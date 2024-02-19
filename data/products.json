@@ -1,4 +1,5 @@
-[
+{
+  "items":[
     {
       "id": "vitamin-d-90-100",
       "name": "D-vitamin, 90ug, 100 stk",
@@ -261,3 +262,4 @@
       "upsellProductId": null
     }
   ]
+}

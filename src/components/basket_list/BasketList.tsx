@@ -19,7 +19,7 @@ const BasketList: React.FC<BasketListProps> = ({
 }) => {
   return (
     <div>
-      {items.length > 0 ? (
+      {items?.length > 0 ? (
         <ul>
           {items.map(item => (
             <BasketItem

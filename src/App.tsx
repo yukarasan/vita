@@ -1,4 +1,86 @@
 import { useState, useEffect } from 'react';
+import './assets/styles/App.css'; 
+
+import BasketList from './components/basket_list/BasketList.tsx';
+import TotalAmount from './components/total_amount/TotalAmount.tsx';
+import { basketService } from './services/BasketService'; 
+import { Item } from './models/Item.ts';
+
+function App() {
+  const [items, setItems] = useState<Item[]>(basketService.getAllItems() as Item[]);
+  const [totalAmount, setTotalAmount] = useState<number>(basketService.calculateTotal());
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('data/products.json'); // Assuming your JSON file is named products.json
+        const data = await response.json();
+        setItems(data.items); // Assuming your JSON file has a top-level "items" key containing an array of items
+        console.log(data.items);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // A method to refresh the basket state (items and total amount)
+  // A method to refresh the total amount
+const refreshTotalAmount = () => {
+  setTotalAmount(basketService.calculateTotal());
+};
+
+const handleRemoveItem = (itemId: string) => {
+  basketService.removeItem(itemId);
+  setItems(basketService.getAllItems()); // Update items after removal
+  refreshTotalAmount(); // Update total amount without fetching all items
+};
+
+
+
+const handleUpdateQuantity = (itemId: string, quantity: number) => {
+  basketService.updateQuantity(itemId, quantity);
+  const newTotalAmount = basketService.calculateTotal();
+  setTotalAmount(newTotalAmount);
+};
+
+
+
+const handleToggleGiftWrap = (itemId: string) => {
+  basketService.toggleGiftWrap(itemId);
+  refreshTotalAmount(); // Update total amount without fetching all items
+};
+
+const handleSetRecurringOrder = (itemId: string, schedule: 'none' | 'weekly' | 'monthly') => {
+  basketService.setRecurringOrder(itemId, schedule);
+  refreshTotalAmount(); // Update total amount without fetching all items
+};
+
+  return (
+    <div className="App">
+      <header>
+        <h1>Vita Checkout Page</h1>
+      </header>
+      <main>
+        <BasketList 
+          items={items} 
+          onRemoveItem={handleRemoveItem} 
+          onUpdateQuantity={handleUpdateQuantity}
+          onToggleGiftWrap={handleToggleGiftWrap}
+          onSetRecurringOrder={handleSetRecurringOrder}
+        />
+        <TotalAmount amount={totalAmount} />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+
+
+/*
+import { useState, useEffect } from 'react';
 import './assets/styles/App.css'; // Ensure this path is correct
 
 import BasketList from './components/basket_list/BasketList.tsx';
@@ -40,27 +122,4 @@ function App() {
     basketService.setRecurringOrder(itemId, schedule);
     refreshBasket();
   };
-
-  return (
-    <div className="App">
-      <header>
-        <h1>Vita Checkout Page</h1>
-      </header>
-      <main>
-        <BasketList 
-          items={items} 
-          onRemoveItem={handleRemoveItem} 
-          onUpdateQuantity={handleUpdateQuantity}
-          onToggleGiftWrap={handleToggleGiftWrap}
-          onSetRecurringOrder={handleSetRecurringOrder}
-        />
-        <TotalAmount amount={totalAmount} />
-      </main>
-      <footer>
-        {/* Footer content or additional controls */}
-      </footer>
-    </div>
-  );
-}
-
-export default App;
+  */
