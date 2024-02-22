@@ -27,9 +27,11 @@ function App() {
 
   // A method to refresh the basket state (items and total amount)
   // A method to refresh the total amount
-const refreshTotalAmount = () => {
-  setTotalAmount(basketService.calculateTotal());
-};
+  const refreshTotalAmount = () => {
+    const newTotalAmount = basketService.calculateTotal();
+    setTotalAmount(newTotalAmount);
+    console.log('New total amount:', newTotalAmount); // Add this line to log the new total amount
+  };
 
 const handleRemoveItem = (itemId: string) => {
   basketService.removeItem(itemId);
@@ -39,11 +41,17 @@ const handleRemoveItem = (itemId: string) => {
 
 
 
-const handleUpdateQuantity = (itemId: string, quantity: number) => {
-  basketService.updateQuantity(itemId, quantity);
-  const newTotalAmount = basketService.calculateTotal();
-  setTotalAmount(newTotalAmount);
+const handleUpdateQuantity = async (itemId: string, quantity: number) => {
+  console.log('Updating quantity for item:', itemId, 'New quantity:', quantity); // Add this line
+  await basketService.updateQuantity(itemId, quantity); // Wait for quantity update to complete
+  const newTotalAmount = basketService.calculateTotal(); // Recalculate total amount
+  setTotalAmount(newTotalAmount); // Update total amount state
+  console.log('New total amount:', newTotalAmount);
 };
+
+
+
+
 
 
 
