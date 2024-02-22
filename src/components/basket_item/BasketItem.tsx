@@ -24,7 +24,6 @@ const BasketItem: React.FC<BasketItemProps> = ({
   const handleChangeRecurringOrder = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onSetRecurringOrder(event.target.value as 'none' | 'weekly' | 'monthly');
   };
-
   return (
     <li>
       <div>

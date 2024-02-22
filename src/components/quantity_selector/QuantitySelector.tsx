@@ -14,6 +14,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({ value, onChange }) 
     } else if (newValue > 99) {
       newValue = 99;
     }
+    console.log('New quantity:', newValue); // Add this line
     onChange(newValue);
   };
 
