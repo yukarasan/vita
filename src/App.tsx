@@ -13,9 +13,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
+        // const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'); 
         const response = await fetch('data/products.json'); // Assuming your JSON file is named products.json
         const data = await response.json();
-        setItems(data.items); // Assuming your JSON file has a top-level "items" key containing an array of items
+        setItems(data.items); //top-level "items" key containing an array of items
         console.log(data.items);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -30,7 +32,7 @@ function App() {
   const refreshTotalAmount = () => {
     const newTotalAmount = basketService.calculateTotal();
     setTotalAmount(newTotalAmount);
-    console.log('New total amount:', newTotalAmount); // Add this line to log the new total amount
+    console.log('New total amount:', newTotalAmount); // log the new total amount
   };
 
 const handleRemoveItem = (itemId: string) => {
@@ -42,7 +44,7 @@ const handleRemoveItem = (itemId: string) => {
 
 
 const handleUpdateQuantity = async (itemId: string, quantity: number) => {
-  console.log('Updating quantity for item:', itemId, 'New quantity:', quantity); // Add this line
+  console.log('Updating quantity for item:', itemId, 'New quantity:', quantity); 
   await basketService.updateQuantity(itemId, quantity); // Wait for quantity update to complete
   const newTotalAmount = basketService.calculateTotal(); // Recalculate total amount
   setTotalAmount(newTotalAmount); // Update total amount state
