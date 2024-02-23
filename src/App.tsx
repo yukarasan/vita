@@ -14,11 +14,10 @@ function App() {
     const fetchData = async () => {
       try {
 
-        // const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'); 
-        const response = await fetch('data/products.json'); // Assuming your JSON file is named products.json
+        const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'); 
         const data = await response.json();
-        setItems(data.items); //top-level "items" key containing an array of items
-        console.log(data.items);
+        setItems(data); //top-level "items" key containing an array of items
+        console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -26,6 +25,7 @@ function App() {
 
     fetchData();
   }, []);
+
 
   // A method to refresh the basket state (items and total amount)
   // A method to refresh the total amount
@@ -50,11 +50,6 @@ const handleUpdateQuantity = async (itemId: string, quantity: number) => {
   setTotalAmount(newTotalAmount); // Update total amount state
   console.log('New total amount:', newTotalAmount);
 };
-
-
-
-
-
 
 
 const handleToggleGiftWrap = (itemId: string) => {
