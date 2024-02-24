@@ -14,14 +14,22 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   const [inputQuantity, setInputQuantity] = useState(product.quantity.toString());
 
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuantity = event.target.value.replace(/\D/g, ''); // Remove non-digit characters
-    setInputQuantity(newQuantity); // Update the input field
+    let newQuantityStr = event.target.value.replace(/\D/g, ''); // Only keep digits
+    if (newQuantityStr.length > 2) {
+      newQuantityStr = newQuantityStr.slice(0, 2); // Limit string to two digits
+    }
+    const newQuantity = newQuantityStr ? Math.min(parseInt(newQuantityStr, 10), 99) : 1;
+    
+    setInputQuantity(newQuantityStr); 
+    setBasket((prev) =>
+      prev.map((p) => (p.id === product.id ? { ...p, quantity: newQuantity } : p))
+    );
   };
 
   const handleBlur = () => {
-    const newQuantity = Math.max(1, Math.min(parseInt(inputQuantity, 10), 99));
+    const newQuantity = inputQuantity ? Math.max(1, Math.min(parseInt(inputQuantity, 10), 99)) : 1;
+    setInputQuantity(newQuantity.toString());
     if (newQuantity !== product.quantity) {
-      setInputQuantity(newQuantity.toString());
       setBasket((prev) =>
         prev.map((p) => (p.id === product.id ? { ...p, quantity: newQuantity } : p))
       );
@@ -54,7 +62,9 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         value={inputQuantity}
         onChange={handleQuantityChange}
         onBlur={handleBlur}
+        maxLength={2} // HTML attribute to limit input to two characters
         pattern="\d*"  
+        className="quantity-input" // Added a class for styling
       />
       <button onClick={handleIncreaseQuantity} disabled={product.quantity >= 99}>
         +
