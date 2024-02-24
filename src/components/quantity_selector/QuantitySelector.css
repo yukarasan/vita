@@ -1,3 +1,13 @@
-.quantity-selector {
-  display: flex;
+.quantity-selector input[type="text"] {
+  width: 2em;
+  border: none; 
+  background-color: transparent; 
+  text-align: center;
+  outline: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.quantity-selector input[type="text"]:focus {
+  border-bottom: 1px solid #000;
 }
