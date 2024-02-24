@@ -7,7 +7,8 @@ import { Item } from "./models/Item.ts"
 import Products from "./data/Products.ts"
 
 function App() {
-  const [basket, setBasket] = useState<Item[]>(Products.getInitialBasket());
+  const [basket, setBasket] = useState<Item[]>(Products.getInitialBasket(),);
+  const totalItems = basket.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="App">
@@ -15,11 +16,13 @@ function App() {
         <h1>Vita Checkout Page</h1>
       </header>
       <main>
+      <p>Cart ({totalItems} items)</p> 
         <BasketList basket={basket} setBasket={setBasket} />
         <TotalAmount basket={basket} />
       </main>
     </div>
   )
+  
 }
 
 export default App

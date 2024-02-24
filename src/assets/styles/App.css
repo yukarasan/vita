@@ -1,12 +1,56 @@
-.main-container {
-  text-align: center;
-  max-width: 1280px;
-  margin: 0 auto;
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif; /* Use a suitable font */
+  background-color: #f0f0f0; /* Light grey background */
 }
 
-.card {
-  margin: 20px;
+.container {
+  max-width: 1200px; /* Adjust max-width as needed */
+  margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+}
+
+.checkout-page {
+  background-color: #fff; /* White background */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+}
+
+.cart-items {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cart-items span {
+  font-weight: bold;
+}
+
+.basket-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.basket-list li {
+  border-bottom: 1px solid #e0e0e0; /* Light grey border between items */
+  padding: 10px 0;
+}
+
+.basket-list li:last-child {
+  border-bottom: none; /* Remove border for last item */
+}
+
+.basket-list-name {
+  font-weight: bold;
+}
+
+.total-amount {
+  margin-top: 20px;
+}
+
+.total-amount h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333; /* Dark text color */
 }
