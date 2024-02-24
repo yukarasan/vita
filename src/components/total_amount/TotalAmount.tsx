@@ -17,7 +17,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ basket }) => {
 
   return (
     <div>
-      <h2>Total Amount: {totalAmount}</h2>
+      <h2>Total Amount: {totalAmount} DKK</h2>
     </div>
   )
 }
