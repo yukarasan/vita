@@ -1,0 +1,15 @@
+.basket-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #e0e0e0;
+  justify-items: center;
+}
+
+.basket-list {
+  width: 100%;
+  list-style-type: none;
+}
+
+.basket-list-name {
+  justify-self: start;
+}

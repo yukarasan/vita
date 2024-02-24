@@ -1,34 +1,28 @@
-import React from 'react';
-import { Item } from '../../models/Item';
-import BasketItem from '../basket_item/BasketItem';
+import { Item } from "../../models/Item"
+import BasketItem from "../basket_item/BasketItem"
+import "./BasketList.css"
 
 interface BasketListProps {
-  items: Item[];
-  onRemoveItem: (itemId: string) => void;
-  onUpdateQuantity: (itemId: string, quantity: number) => void;
-  onToggleGiftWrap: (itemId: string) => void;
-  onSetRecurringOrder: (itemId: string, schedule: 'none' | 'weekly' | 'monthly') => void;
+  basket: Item[]
+  setBasket: React.Dispatch<React.SetStateAction<Item[]>>
 }
 
-const BasketList: React.FC<BasketListProps> = ({
-  items,
-  onRemoveItem,
-  onUpdateQuantity,
-  onToggleGiftWrap,
-  onSetRecurringOrder,
-}) => {
+const BasketList: React.FC<BasketListProps> = ({ basket, setBasket }) => {
   return (
     <div>
-      {items?.length > 0 ? (
-        <ul>
-          {items.map(item => (
+      {basket?.length > 0 ? (
+        <ul className="basket-list">
+          <div className="basket-header">
+            <p className="basket-list-name">Name</p>
+            <p>Price</p>
+            <p>Quantity</p>
+            <p>Total Price</p>
+          </div>
+          {basket.map((product) => (
             <BasketItem
-              key={item.id}
-              item={item}
-              onRemove={() => onRemoveItem(item.id)}
-              onUpdateQuantity={(quantity) => onUpdateQuantity(item.id, quantity)}
-              onToggleGiftWrap={() => onToggleGiftWrap(item.id)}
-              onSetRecurringOrder={(schedule) => onSetRecurringOrder(item.id, schedule)}
+              key={product.id}
+              product={product}
+              setBasket={setBasket}
             />
           ))}
         </ul>
@@ -36,7 +30,7 @@ const BasketList: React.FC<BasketListProps> = ({
         <p>Your basket is empty.</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default BasketList;
+export default BasketList

@@ -1,66 +1,54 @@
-import { useState, useEffect } from 'react';
-import './assets/styles/App.css'; 
+import { useState } from "react"
+import "./assets/styles/App.css"
 
-import BasketList from './components/basket_list/BasketList.tsx';
-import TotalAmount from './components/total_amount/TotalAmount.tsx';
-import { basketService } from './services/BasketService'; 
-import { Item } from './models/Item.ts';
+import BasketList from "./components/basket_list/BasketList.tsx"
+import TotalAmount from "./components/total_amount/TotalAmount.tsx"
+import { Item } from "./models/Item.ts"
 
 function App() {
-  const [items, setItems] = useState<Item[]>(basketService.getAllItems() as Item[]);
-  const [totalAmount, setTotalAmount] = useState<number>(basketService.calculateTotal());
+  const [basket, setBasket] = useState<Item[]>([
+    {
+      id: "1",
+      title: "D-vitamin, 90ug, 100 stk",
+      quantity: 2,
+      giftWrap: false,
+      recurringOrder: "none",
+      price: 116,
+    },
+    {
+      id: "2",
+      title: "C-vitamin, 500mg, 250 stk",
+      quantity: 1,
+      giftWrap: true,
+      recurringOrder: "none",
+      price: 150,
+    },
+    {
+      id: "3",
+      title: "C-vitamin Depot, 500mg, 250 stk",
+      quantity: 2,
+      giftWrap: false,
+      recurringOrder: "none",
+      price: 175,
+    },
+  ])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json"
+  //       )
+  //       const data = await response.json()
+  //       setItems(data) //top-level "items" key containing an array of items
+  //       console.log(data)
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error)
+  //     }
+  //   }
 
-        const response = await fetch('https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json'); 
-        const data = await response.json();
-        setItems(data); //top-level "items" key containing an array of items
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-
-  // A method to refresh the basket state (items and total amount)
-  // A method to refresh the total amount
-  const refreshTotalAmount = () => {
-    const newTotalAmount = basketService.calculateTotal();
-    setTotalAmount(newTotalAmount);
-    console.log('New total amount:', newTotalAmount); // log the new total amount
-  };
-
-const handleRemoveItem = (itemId: string) => {
-  basketService.removeItem(itemId);
-  setItems(basketService.getAllItems()); // Update items after removal
-  refreshTotalAmount(); // Update total amount without fetching all items
-};
-
-
-
-const handleUpdateQuantity = async (itemId: string, quantity: number) => {
-  console.log('Updating quantity for item:', itemId, 'New quantity:', quantity); 
-  await basketService.updateQuantity(itemId, quantity); // Wait for quantity update to complete
-  const newTotalAmount = basketService.calculateTotal(); // Recalculate total amount
-  setTotalAmount(newTotalAmount); // Update total amount state
-  console.log('New total amount:', newTotalAmount);
-};
-
-
-const handleToggleGiftWrap = (itemId: string) => {
-  basketService.toggleGiftWrap(itemId);
-  refreshTotalAmount(); // Update total amount without fetching all items
-};
-
-const handleSetRecurringOrder = (itemId: string, schedule: 'none' | 'weekly' | 'monthly') => {
-  basketService.setRecurringOrder(itemId, schedule);
-  refreshTotalAmount(); // Update total amount without fetching all items
-};
+  //   fetchData()
+  // }, [])
 
   return (
     <div className="App">
@@ -68,21 +56,14 @@ const handleSetRecurringOrder = (itemId: string, schedule: 'none' | 'weekly' | '
         <h1>Vita Checkout Page</h1>
       </header>
       <main>
-        <BasketList 
-          items={items} 
-          onRemoveItem={handleRemoveItem} 
-          onUpdateQuantity={handleUpdateQuantity}
-          onToggleGiftWrap={handleToggleGiftWrap}
-          onSetRecurringOrder={handleSetRecurringOrder}
-        />
-        <TotalAmount amount={totalAmount} />
+        <BasketList basket={basket} setBasket={setBasket} />
+        <TotalAmount basket={basket} />
       </main>
     </div>
-  );
+  )
 }
 
-export default App;
-
+export default App
 
 /*
 import { useState, useEffect } from 'react';

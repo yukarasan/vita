@@ -1,43 +1,52 @@
-import React from 'react';
+import { Item } from "../../models/Item"
 
 interface QuantitySelectorProps {
-  value: number;
-  onChange: (newValue: number) => void;
+  product: Item
+  setBasket: React.Dispatch<React.SetStateAction<Item[]>>
 }
 
-const QuantitySelector: React.FC<QuantitySelectorProps> = ({ value, onChange }) => {
-  // Ensure the value is always within acceptable bounds (e.g., 1 to 99)
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newValue = parseInt(e.target.value, 10);
-    if (isNaN(newValue) || newValue < 1) {
-      newValue = 1;
-    } else if (newValue > 99) {
-      newValue = 99;
-    }
-    console.log('New quantity:', newValue); // Add this line
-    onChange(newValue);
-  };
+const QuantitySelector: React.FC<QuantitySelectorProps> = ({
+  product,
+  setBasket,
+}) => {
+  const handleDecreaseQuantity = () => {
+    setBasket((prev) => {
+      const updatedBasket = prev.map((p) => {
+        if (p.id === product.id) {
+          return { ...p, quantity: p.quantity - 1 }
+        }
+        return p
+      })
+      return updatedBasket
+    })
+  }
 
-  // Increment and decrement functions for the quantity
-  const increment = () => {
-    if (value < 99) {
-      onChange(value + 1);
-    }
-  };
-
-  const decrement = () => {
-    if (value > 1) {
-      onChange(value - 1);
-    }
-  };
+  const handleIncreaseQuantity = () => {
+    setBasket((prev) => {
+      const updatedBasket = prev.map((p) => {
+        if (p.id === product.id) {
+          return { ...p, quantity: p.quantity + 1 }
+        }
+        return p
+      })
+      return updatedBasket
+    })
+  }
 
   return (
-    <div>
-      <button onClick={decrement} disabled={value <= 1}>-</button>
-      <input type="number" value={value} onChange={handleQuantityChange} min="1" max="99" />
-      <button onClick={increment} disabled={value >= 99}>+</button>
+    <div className="quantity-selector">
+      <button onClick={handleDecreaseQuantity} disabled={product.quantity < 1}>
+        -
+      </button>
+      <p>{product.quantity}</p>
+      <button
+        onClick={handleIncreaseQuantity}
+        disabled={product.quantity >= 99}
+      >
+        +
+      </button>
     </div>
-  );
-};
+  )
+}
 
-export default QuantitySelector;
+export default QuantitySelector
