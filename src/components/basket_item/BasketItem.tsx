@@ -9,22 +9,22 @@ interface BasketItemProps {
 
 const BasketItem: React.FC<BasketItemProps> = ({ product, setBasket }) => {
   const handleRemoveProduct = () => {
-    setBasket((prev: Item[]) => prev.filter((p) => p.id !== product.id))
-  }
+    setBasket((prev) => prev.filter((p) => p.id !== product.id));
+  };
 
-  // Format price with two decimal places
-  const formattedPrice = product.price.toFixed(2);
+  const handleGiftWrapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBasket((prev) => prev.map((item) => item.id === product.id ? { ...item, giftWrap: event.target.checked } : item));
+  };
+
+  // Format total price with two decimal places
   const formattedTotal = (product.price * product.quantity).toFixed(2);
 
   return (
-    <li>
-      <div className="basket-item">
-        <div className="basket-item-details">
-          <h3 className="basket-item-name">{product.title}</h3>
-          <p>{formattedPrice} kr</p>
-        </div>
+    <li className="basket-item">
+      <div className="basket-item-top">
+        <span className="basket-item-name">{product.title}</span>
         <QuantitySelector setBasket={setBasket} product={product} />
-        <p>{formattedTotal} kr</p>
+        <span className="basket-item-total">{formattedTotal} kr</span>
         <button className="basket-item-button" onClick={handleRemoveProduct}>
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,19 @@ const BasketItem: React.FC<BasketItemProps> = ({ product, setBasket }) => {
           </svg>
         </button>
       </div>
+      <div className="gift-wrap-container">
+        <label className="gift-wrap-checkbox">
+          🎁 Gift wrap this order?
+          <input
+            type="checkbox"
+            checked={product.giftWrap}
+            onChange={handleGiftWrapChange}
+          />
+        </label>
+      </div>
     </li>
   );
-}
+
+};
 
 export default BasketItem;

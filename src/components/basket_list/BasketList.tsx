@@ -1,22 +1,17 @@
-import { Item } from "../../models/Item"
-import BasketItem from "../basket_item/BasketItem"
-import "./BasketList.css"
+import { Item } from "../../models/Item";
+import BasketItem from "../basket_item/BasketItem";
+import "./BasketList.css";
 
 interface BasketListProps {
-  basket: Item[]
-  setBasket: React.Dispatch<React.SetStateAction<Item[]>>
+  basket: Item[];
+  setBasket: React.Dispatch<React.SetStateAction<Item[]>>;
 }
 
 const BasketList: React.FC<BasketListProps> = ({ basket, setBasket }) => {
   return (
-    <div>
-      {basket?.length > 0 ? (
+    <div className="basket-list-container"> {/* Rename the class for styling */}
+      {basket.length > 0 ? (
         <ul className="basket-list">
-          <div className="basket-header">
-            <p className="basket-list-name">Product</p>
-            <p>Quantity</p>
-            <p>Total Price</p>
-          </div>
           {basket.map((product) => (
             <BasketItem
               key={product.id}
@@ -26,10 +21,10 @@ const BasketList: React.FC<BasketListProps> = ({ basket, setBasket }) => {
           ))}
         </ul>
       ) : (
-        <p>Your basket is empty.</p>
-      )}
+        <p className="empty-basket-message">Your basket is empty.</p> 
+      )} {/* Add a class for styling */}
     </div>
-  )
-}
+  );
+};
 
-export default BasketList
+export default BasketList;

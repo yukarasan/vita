@@ -1,31 +1,34 @@
-import { useState } from "react"
-import "./assets/styles/App.css"
+import { useState } from "react";
+import "./assets/styles/App.css";
 
-import BasketList from "./components/basket_list/BasketList.tsx"
-import TotalAmount from "./components/total_amount/TotalAmount.tsx"
-import { Item } from "./models/Item.ts"
-import Products from "./data/Products.ts"
+import BasketList from "./components/basket_list/BasketList";
+import TotalAmount from "./components/total_amount/TotalAmount";
+import { Item } from "./models/Item";
+import Products from "./data/Products";
 
 function App() {
-  const [basket, setBasket] = useState<Item[]>(Products.getInitialBasket(),);
+  const [basket, setBasket] = useState<Item[]>(Products.getInitialBasket());
   const totalItems = basket.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="App">
       <header>
         <h1>Checkout</h1>
+        <p>Cart ({totalItems} items)</p> 
       </header>
-      <main>
-      <p>Cart ({totalItems} items)</p> 
-        <BasketList basket={basket} setBasket={setBasket} />
-        <TotalAmount basket={basket} />
+      <main className="checkout-layout">
+        <div className="basket-container"> 
+          <BasketList basket={basket} setBasket={setBasket} />
+        </div>
+        <div className="order-summary"> 
+          <TotalAmount basket={basket} />
+        </div>
       </main>
     </div>
-  )
-  
+  );
 }
 
-export default App
+export default App;
 
 
 // useEffect(() => {
