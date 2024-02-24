@@ -9,7 +9,7 @@ class Products {
         quantity: 2,
         giftWrap: false,
         recurringOrder: "none",
-        price: 116,
+        price: 114.95,
       },
       {
         id: "2",
@@ -17,7 +17,7 @@ class Products {
         quantity: 1,
         giftWrap: true,
         recurringOrder: "none",
-        price: 150,
+        price: 149.50,
       },
       {
         id: "3",
@@ -25,7 +25,7 @@ class Products {
         quantity: 2,
         giftWrap: false,
         recurringOrder: "none",
-        price: 175,
+        price: 199.95,
       },
     ];
   }
