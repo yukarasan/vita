@@ -13,8 +13,7 @@ const BasketList: React.FC<BasketListProps> = ({ basket, setBasket }) => {
       {basket?.length > 0 ? (
         <ul className="basket-list">
           <div className="basket-header">
-            <p className="basket-list-name">Name</p>
-            <p>Price</p>
+            <p className="basket-list-name">Product</p>
             <p>Quantity</p>
             <p>Total Price</p>
           </div>
