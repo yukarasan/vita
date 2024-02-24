@@ -30,6 +30,13 @@
     justify-self: start; /* Aligns the button to the left */
 }
 
-.basket-item-button:hover {
-    background-color: #e0e0e0;
+.basket-item-remove-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    stroke: currentColor; 
+    transition: stroke 0.3s; 
+}
+
+.basket-item-button:hover .basket-item-remove-icon {
+    stroke: red; 
 }
