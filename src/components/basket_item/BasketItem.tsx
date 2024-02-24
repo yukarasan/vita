@@ -12,15 +12,21 @@ const BasketItem: React.FC<BasketItemProps> = ({ product, setBasket }) => {
     setBasket((prev: Item[]) => prev.filter((p) => p.id !== product.id))
   }
 
+  // Format price with two decimal places
+  const formattedPrice = product.price.toFixed(2);
+  const formattedTotal = (product.price * product.quantity).toFixed(2);
+
   return (
     <li>
       <div className="basket-item">
-        <h3 className="basket-item-name">{product.title}</h3>
-        <p>{product.price} kr</p>
+        <div className="basket-item-details">
+          <h3 className="basket-item-name">{product.title}</h3>
+          <p>{formattedPrice} kr</p>
+        </div>
         <QuantitySelector setBasket={setBasket} product={product} />
-        <p>{product.price * product.quantity} kr</p>
+        <p>{formattedTotal} kr</p>
         <button className="basket-item-button" onClick={handleRemoveProduct}>
-          <svg
+        <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -37,7 +43,7 @@ const BasketItem: React.FC<BasketItemProps> = ({ product, setBasket }) => {
         </button>
       </div>
     </li>
-  )
+  );
 }
 
-export default BasketItem
+export default BasketItem;

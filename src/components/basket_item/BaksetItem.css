@@ -6,12 +6,13 @@
 
 .basket-item {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: left;
     align-items: center;
 }
 
 .basket-item-name {
+    font-size: 1em;
     justify-self: start;
 }
 
@@ -26,6 +27,7 @@
     padding: 0.5rem 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    justify-self: start; /* Aligns the button to the left */
 }
 
 .basket-item-button:hover {

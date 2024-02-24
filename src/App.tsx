@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Vita Checkout Page</h1>
+        <h1>Checkout</h1>
       </header>
       <main>
       <p>Cart ({totalItems} items)</p> 
