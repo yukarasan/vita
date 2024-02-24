@@ -1,46 +1,58 @@
 /* App.css */
 
-body {
-  font-family: Arial, sans-serif; /* Use a suitable font */
-  background-color: #f0f0f0; /* Light grey background */
+.App {
+  text-align: center;
+  max-width: max-content;
+  margin: auto;
 }
 
-.container {
-  max-width: 1200px; /* Adjust max-width as needed */
-  margin: 0 auto;
+.checkout-layout {
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
 }
 
-.checkout-page {
-  background-color: #fff; /* White background */
-  border: 1px solid #ccc; /* Light grey border */
-  border-radius: 8px; /* Rounded corners */
+@media (max-width: 768px) {
+  .checkout-layout {
+    flex-direction: column;
+  }
+}
+
+.checkout-layout {
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
 }
 
-.cart-items {
-  font-size: 18px;
-  margin-bottom: 20px;
+.basket-container {
+  background: #ffffff;
+  padding: 20px;
+  margin-right: 40px; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  flex: 1; 
+  max-width: 70%; 
 }
 
-.cart-items span {
-  font-weight: bold;
+.order-summary {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  flex: 1;
+  max-width: 30%; 
 }
 
-.basket-list {
-  list-style-type: none;
-  padding: 0;
-}
+@media (max-width: 900px) {
+  .checkout-layout {
+    flex-direction: column;
+  }
 
-.basket-list li {
-  border-bottom: 1px solid #e0e0e0; /* Light grey border between items */
-  padding: 10px 0;
-}
-
-.basket-list li:last-child {
-  border-bottom: none; /* Remove border for last item */
-}
-
-.basket-list-name {
-  font-weight: bold;
+  .basket-container,
+  .order-summary {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0; /* No margin on the right for mobile */
+    margin-bottom: 20px; /* Adds space between the cards when they stack */
+  }
 }
