@@ -1,0 +1,33 @@
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.basket-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.basket-item-name {
+    justify-self: start;
+}
+
+.basket-item-remove-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.basket-item-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.basket-item-button:hover {
+    background-color: #e0e0e0;
+}
