@@ -1,20 +1,20 @@
-import { useState } from "react"
-import "./assets/styles/App.css"
+import { useState } from "react";
+import "./assets/styles/App.css";
 
-import CartList from "./components/cart_list/CartList"
-import TotalAmount from "./components/total_amount/TotalAmount"
-import { CartItemType } from "./lib/types"
-import Cart from "./data/Cart"
+import CartList from "./components/cart_list/CartList";
+import TotalAmount from "./components/total_amount/TotalAmount";
+import { CartItemType } from "./lib/types";
+import Cart from "./data/Cart";
 
 function App() {
-  const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart())
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0)
+  const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart());
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="App">
       <header>
         <h1>Checkout</h1>
-        <p>Cart ({totalItems} items)</p>
+        <p>Cart ({totalItems} items!!!)</p>
       </header>
       <main className="checkout-layout">
         <div className="cart-container">
@@ -25,7 +25,7 @@ function App() {
         </div>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
