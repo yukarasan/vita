@@ -1,7 +1,7 @@
-import { CartItem } from "../lib/types";
+import { CartItemType } from "../lib/types";
 
 class Cart {
-  static getInitialCart(): CartItem[] {
+  static getInitialCart(): CartItemType[] {
     return [
       {
         id: "vitamin-d-90-100",
