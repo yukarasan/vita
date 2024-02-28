@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react"
-import { CartItem } from "../../lib/types"
-import "./TotalAmount.css"
+import { useState, useEffect } from "react";
+import { CartItemType } from "../../lib/types";
+import "./TotalAmount.css";
 
 interface TotalAmountProps {
-  cart: CartItem[]
+  cart: CartItemType[];
 }
 
 const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
-  const [totalAmount, setTotalAmount] = useState(0)
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const amount = cart.reduce(
       (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
       0
-    )
-    setTotalAmount(amount)
-  }, [cart])
+    );
+    setTotalAmount(amount);
+  }, [cart]);
 
   // Separate the currency code and amount for individual styling
-  const currencyCode = "DKK"
+  const currencyCode = "DKK";
   const formattedAmount = new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "DKK",
@@ -26,7 +26,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
   })
     .format(totalAmount)
     .replace("DKK", "")
-    .trim()
+    .trim();
 
   return (
     <div className="total-amount-container">
@@ -34,7 +34,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
       <span className="currency-code">{currencyCode}</span>
       <span className="amount">{formattedAmount}</span>
     </div>
-  )
-}
+  );
+};
 
-export default TotalAmount
+export default TotalAmount;
