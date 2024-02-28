@@ -24,14 +24,14 @@
   padding: 20px;
 }
 
-.basket-container {
+.cart-container {
   background: #ffffff;
   padding: 20px;
-  margin-right: 40px; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-right: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  flex: 1; 
-  max-width: 70%; 
+  flex: 1;
+  max-width: 70%;
 }
 
 .order-summary {
@@ -40,7 +40,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   flex: 1;
-  max-width: 30%; 
+  max-width: 30%;
 }
 
 @media (max-width: 900px) {
@@ -48,7 +48,7 @@
     flex-direction: column;
   }
 
-  .basket-container,
+  .cart-container,
   .order-summary {
     width: 100%;
     max-width: 100%;
