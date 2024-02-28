@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <header>
         <h1>Checkout</h1>
-        <p>Cart ({totalItems} items!!!)</p>
+        <p>Cart ({totalItems} items)</p>
       </header>
       <main className="checkout-layout">
         <div className="cart-container">
