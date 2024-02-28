@@ -1,22 +1,32 @@
-import { useState, useEffect } from "react";
-import { Item } from "../../models/Item";
-import './TotalAmount.css';
+import { useState, useEffect } from "react"
+import { CartItem } from "../../lib/types"
+import "./TotalAmount.css"
 
 interface TotalAmountProps {
-  basket: Item[];
+  cart: CartItem[]
 }
 
-const TotalAmount: React.FC<TotalAmountProps> = ({ basket }) => {
-  const [totalAmount, setTotalAmount] = useState(0);
+const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
+  const [totalAmount, setTotalAmount] = useState(0)
 
   useEffect(() => {
-    const amount = basket.reduce((acc, product) => acc + product.price * product.quantity, 0);
-    setTotalAmount(amount);
-  }, [basket]);
+    const amount = cart.reduce(
+      (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+      0
+    )
+    setTotalAmount(amount)
+  }, [cart])
 
   // Separate the currency code and amount for individual styling
-  const currencyCode = "DKK";
-  const formattedAmount = new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'DKK', minimumFractionDigits: 2 }).format(totalAmount).replace("DKK", "").trim();
+  const currencyCode = "DKK"
+  const formattedAmount = new Intl.NumberFormat("en-AU", {
+    style: "currency",
+    currency: "DKK",
+    minimumFractionDigits: 2,
+  })
+    .format(totalAmount)
+    .replace("DKK", "")
+    .trim()
 
   return (
     <div className="total-amount-container">
@@ -24,7 +34,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ basket }) => {
       <span className="currency-code">{currencyCode}</span>
       <span className="amount">{formattedAmount}</span>
     </div>
-  );
-};
+  )
+}
 
-export default TotalAmount;
+export default TotalAmount

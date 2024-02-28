@@ -1,37 +1,44 @@
-.basket-item {
+.cart-item {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   justify-items: start;
   align-items: center;
 }
 
-.basket-list {
+.cart-list {
   width: 100%;
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.basket-list-name, .basket-item-name {
+.cart-list-name,
+.cart-item-name {
   justify-self: start;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .basket-header, .basket-item {
-    grid-template-columns: repeat(4, 1fr); /* Assume moving Quantity and Total Price closer */
+  .cart-header,
+  .cart-item {
+    grid-template-columns: repeat(
+      4,
+      1fr
+    ); /* Assume moving Quantity and Total Price closer */
   }
 }
 
 @media (max-width: 480px) {
-  .basket-header, .basket-item {
+  .cart-header,
+  .cart-item {
     /* Assuming Quantity and Total Price need to be specifically aligned */
     grid-template-columns: 1fr 1fr 1fr; /* Adjust based on your design */
   }
 }
 
 @media (max-width: 320px) {
-  .basket-header, .basket-item {
+  .cart-header,
+  .cart-item {
     /* Stack most items vertically, but keep Quantity and Total Price aligned if needed */
     grid-template-columns: 1fr; /* This stacks all items vertically */
   }
