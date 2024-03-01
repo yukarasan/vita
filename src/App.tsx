@@ -8,7 +8,7 @@ import Cart from "./data/Cart";
 
 function App() {
   const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart());
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const totalItems = cart.length;
 
   return (
     <div className="App">
@@ -27,5 +27,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
