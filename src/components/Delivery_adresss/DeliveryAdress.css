@@ -1,0 +1,20 @@
+.delivery-address {
+  margin-bottom: 20px;
+}
+
+.delivery-address h2 {
+  margin-bottom: 10px;
+}
+
+.delivery-address input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delivery-address input:focus {
+  outline: none;
+  border-color: #007bff;
+}
