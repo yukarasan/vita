@@ -24,7 +24,6 @@ function App() {
           <TotalAmount cart={cart} />
         </div>
       </main>
-
       <DeliveryAddress />
     </div>
   );
