@@ -12,4 +12,6 @@ export interface CartItemType extends CatalogItemType {
   quantity: number
   giftWrap: boolean
   recurringOrder: "none" | "weekly" | "monthly"
+  rebateQuantity: number; //for rebate quantity
+  rebatePercent: number;  //for rebate percent
 }

@@ -1,19 +1,32 @@
-import { CartItemType, CatalogItemType } from "../../lib/types"
-import QuantitySelector from "../quantity_selector/QuantitySelector"
-import "./CartItem.css"
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react";
+import { CartItemType, CatalogItemType } from "../../lib/types";
+import QuantitySelector from "../quantity_selector/QuantitySelector";
+import "./CartItem.css";
 
 interface CartItemProps {
-  cartItem: CartItemType
-  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>
+  cartItem: CartItemType;
+  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>;
 }
 
 const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
-  const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>()
+  const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>();
+  const [itemTotal, setItemTotal] = useState<number>(0);
+
+  // Calculate rebate amount for the item
+  const rebateAmount = cartItem.quantity >= cartItem.rebateQuantity
+    ? cartItem.price * cartItem.quantity * (cartItem.rebatePercent / 100)
+    : 0;
+
+  // Calculate item total with rebate
+  useEffect(() => {
+    const calculatedTotal = cartItem.price * cartItem.quantity;
+    const discountedTotal = calculatedTotal - rebateAmount;
+    setItemTotal(discountedTotal);
+  }, [cartItem.quantity, cartItem.price, rebateAmount]);
 
   const handleRemoveCartItem = () => {
-    setCart((prev) => prev.filter((item) => item.id !== cartItem.id))
-  }
+    setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
+  };
 
   const handleGiftWrapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCart((prev) =>
@@ -22,11 +35,10 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           ? { ...item, giftWrap: event.target.checked }
           : item
       )
-    )
-  }
+    );
+  };
 
-  // Format total price with two decimal places
-  const formattedTotal = (cartItem.price * cartItem.quantity).toFixed(2)
+  const formattedTotal = itemTotal.toFixed(2);
   const handleCalcRebate = () => {
     if (cartItem.quantity < cartItem.rebateQuantity) {
       return (
@@ -44,20 +56,20 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
       try {
         const response = await fetch(
           "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product.json"
-        )
+        );
 
-        const data = await response.json()
+        const data = await response.json();
         const item = data.find(
           (item: any) => item.id === cartItem.upsellProductId
-        )
-        setUpsellProduct(item)
+        );
+        setUpsellProduct(item);
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.error("Error fetching data:", error);
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <li className="cart-item">
@@ -65,7 +77,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         <span className="cart-item-name">{cartItem.name}</span>
         <QuantitySelector setCart={setCart} cartItem={cartItem} />
         <span className="cart-item-total">{formattedTotal} kr</span>
-        {handleCalcRebate()}
+{handleCalcRebate()}
         <p>{upsellProduct && upsellProduct.name}</p>
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
           <svg
@@ -94,8 +106,9 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           />
         </label>
       </div>
+      <span className="rebate-amount">You Saved: {rebateAmount.toFixed(2)}</span>
     </li>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;
