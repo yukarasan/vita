@@ -24,7 +24,7 @@ function App() {
           <TotalAmount cart={cart} />
         </div>
       </main>
-      <DeliveryAddress />
+      {totalItems > 0 && <DeliveryAddress />}
     </div>
   );
 }
