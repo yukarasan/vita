@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './assets/styles/App.css';
 import CartList from './components/cart_list/CartList';
 import TotalAmount from './components/total_amount/TotalAmount';

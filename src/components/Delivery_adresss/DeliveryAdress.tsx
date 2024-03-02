@@ -22,7 +22,7 @@ const DeliveryAddress = () => {
   const [zipCodeValidation, setZipCodeValidation] = useState({ valid: true, message: '' });
 
   // Event handler to update delivery address
-  const handleDeliveryAddressChange = (event) => {
+  const handleDeliveryAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setDeliveryAddress((prevAddress) => ({
       ...prevAddress,
@@ -35,7 +35,7 @@ const DeliveryAddress = () => {
   };
 
   // Event handler to update billing address
-  const handleBillingAddressChange = (event) => {
+  const handleBillingAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setBillingAddress((prevAddress) => ({
       ...prevAddress,
@@ -53,7 +53,7 @@ const DeliveryAddress = () => {
   };
 
   // Function to validate zip code against the provided list
-  const handleZipCodeValidation = async (zipCode) => {
+  const handleZipCodeValidation = async (zipCode: string) => {
     try {
       const response = await fetch(`https://api.dataforsyningen.dk/postnumre/${zipCode}`);
       if (response.ok) {
@@ -105,6 +105,16 @@ const DeliveryAddress = () => {
         {/* Display zip code validation message */}
         {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
       </div>
+      {/* Checkbox to use the same address for billing */}
+      <div className="use-same-address-container">
+        <input
+          type="checkbox"
+          id="useSameAddress"
+          checked={useSameAddress}
+          onChange={handleUseSameAddressToggle}
+        />
+        <label htmlFor="useSameAddress">Use same address for billing</label>
+      </div>
       {/* Billing Address */}
       {!useSameAddress && (
         <div className="address-container">
@@ -132,16 +142,6 @@ const DeliveryAddress = () => {
           />
         </div>
       )}
-      {/* Checkbox to use the same address for billing */}
-      <div className="use-same-address-container">
-        <input
-          type="checkbox"
-          id="useSameAddress"
-          checked={useSameAddress}
-          onChange={handleUseSameAddressToggle}
-        />
-        <label htmlFor="useSameAddress">Use same address for billing</label>
-      </div>
     </div>
   );
 };
