@@ -4,7 +4,7 @@ import CartList from './components/cart_list/CartList';
 import TotalAmount from './components/total_amount/TotalAmount';
 import { CartItemType } from './lib/types';
 import Cart from './data/Cart';
-import DeliveryAddress from './components/Delivery_adresss/DeliveryAdress';
+import { DeliveryAddress } from './components/delivery_address/DeliveryAddress';
 
 function App() {
   const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart());
