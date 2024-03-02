@@ -27,9 +27,8 @@ export const DeliveryAddress = () => {
   const handleAddressChange = (isBilling = false) => async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
-    // Limit the input to 4 digits only
-    if (value.length > 4 || !/^\d*$/.test(value)) {
-        return; 
+    if (name === 'postalCode' && (value.length > 4 || !/^\d*$/.test(value))) {
+        return;
     }
 
     const updateAddress = isBilling ? setBillingAddress : setDeliveryAddress;
