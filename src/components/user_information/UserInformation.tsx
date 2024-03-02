@@ -37,6 +37,8 @@ export const UserInformation = () => {
 
   return (
     <div>
+      <h2>Your Information</h2>
+
       <label className="input-label">Full Name <span className="required-asterisk">*</span></label>      
       <input
         type="text"

@@ -106,3 +106,13 @@
 .required-input {
   border-bottom: 2px solid red;
 }
+
+.address-container h2, 
+.use-same-address-container h2 { 
+  text-align: left;
+  margin-left: 15px; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px; /* Adjust the size as needed */
+  font-weight: 200; /* Use 700 for bold text if needed */
+}
+
