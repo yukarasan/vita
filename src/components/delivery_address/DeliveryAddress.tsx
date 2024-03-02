@@ -90,14 +90,14 @@ export const DeliveryAddress = () => {
       <div className="address-container">
         <h2>Delivery Address</h2>
         <input
-          type="text"
+          type="tel"
           name="postalCode"
           value={deliveryAddress.postalCode}
           onChange={handleAddressChange()}
           placeholder="Postal Code"
           className={getZipCodeClassName(zipCodeValidation.valid)}
-          min="1000"
-          max="9999"
+          pattern="[0-9]*" 
+          inputMode="numeric"
         />
         {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
         <input
@@ -128,12 +128,14 @@ export const DeliveryAddress = () => {
         <div className="address-container">
           <h2>Billing Address</h2>
           <input
-            type="text"
+            type="tel"
             name="postalCode"
             value={billingAddress.postalCode}
             onChange={handleAddressChange(true)}
             placeholder="Postal Code"
             className={getZipCodeClassName(zipCodeValidationBilling.valid)}
+            pattern="[0-9]*" 
+            inputMode="numeric"
           />
           {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
           <input
