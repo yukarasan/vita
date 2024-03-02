@@ -88,30 +88,40 @@ export const DeliveryAddress = () => {
     <div className="delivery-address">
       <div className="address-container">
         <h2>Delivery Address</h2>
+        <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
         <input
           type="tel"
           name="postalCode"
           value={deliveryAddress.postalCode}
           onChange={handleAddressChange()}
           placeholder="Postal Code"
-          className={getZipCodeClassName(zipCodeValidation.valid)}
+          className={`input-field ${getZipCodeClassName(zipCodeValidation.valid)}`}
           pattern="[0-9]*" 
           inputMode="numeric"
+          required
         />
         {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
+        
+        <label className="input-label">City <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="city"
           value={deliveryAddress.city}
           onChange={handleAddressChange()}
           placeholder="City"
+          className="input-field"
+          required
         />
+        
+        <label className="input-label">Street <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="street"
           value={deliveryAddress.street}
           onChange={handleAddressChange()}
           placeholder="Street"
+          className="input-field"
+          required
         />
       </div>
       <div className="use-same-address-container">
@@ -126,17 +136,21 @@ export const DeliveryAddress = () => {
       {!useSameAddress && (
         <div className="address-container">
           <h2>Billing Address</h2>
+          
+          <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
           <input
             type="tel"
             name="postalCode"
             value={billingAddress.postalCode}
             onChange={handleAddressChange(true)}
             placeholder="Postal Code"
-            className={getZipCodeClassName(zipCodeValidationBilling.valid)}
+            className={`input-field ${getZipCodeClassName(zipCodeValidationBilling.valid)}`}
             pattern="[0-9]*" 
             inputMode="numeric"
           />
           {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
+          
+          <label className="input-label">City <span className="required-asterisk">*</span></label>
           <input
             type="text"
             name="city"
@@ -144,6 +158,8 @@ export const DeliveryAddress = () => {
             onChange={handleAddressChange(true)}
             placeholder="City"
           />
+
+          <label className="input-label">Street <span className="required-asterisk">*</span></label>
           <input
             type="text"
             name="street"
@@ -151,13 +167,14 @@ export const DeliveryAddress = () => {
             onChange={handleAddressChange(true)}
             placeholder="Street"
           />
+
         </div>
       )}
-
+  
       {/* User Information Section */}
       <h2>Your Information</h2>
       <UserInformation />
-
     </div>
   );
+  
 };
