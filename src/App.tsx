@@ -30,3 +30,8 @@ function App() {
 }
 
 export default App;
+
+
+// TODO: If cart is empty then remove billing. 
+// TODO: Maybe make company an option. 
+// TODO: Visual feedback on total for savings! 

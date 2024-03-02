@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DeliveryAddress.css';
-import { UserInformation } from './UserInformation';
+import { UserInformation } from '../user_information/UserInformation';
 
 export const DeliveryAddress = () => {
   const [useSameAddress, setUseSameAddress] = useState(false);
