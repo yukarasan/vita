@@ -124,6 +124,7 @@ export const DeliveryAddress = () => {
           required
         />
       </div>
+
       <div className="use-same-address-container">
         <input
           type="checkbox"
@@ -133,6 +134,7 @@ export const DeliveryAddress = () => {
         />
         <label htmlFor="useSameAddress">Use same address for billing</label>
       </div>
+
       {!useSameAddress && (
         <div className="address-container">
           <h2>Billing Address</h2>
@@ -172,7 +174,6 @@ export const DeliveryAddress = () => {
       )}
   
       {/* User Information Section */}
-      <h2>Your Information</h2>
       <UserInformation />
     </div>
   );

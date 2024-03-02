@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Checkout</h1>
-        <p>Cart ({totalItems} items)</p>
+        <h1>Cart</h1>
+        <p>You have ({totalItems}) items in total</p>
       </header>
       <main className="checkout-layout">
         <div className="cart-container">
@@ -32,6 +32,4 @@ function App() {
 export default App;
 
 
-// TODO: If cart is empty then remove billing. 
-// TODO: Maybe make company an option. 
 // TODO: Visual feedback on total for savings! 
