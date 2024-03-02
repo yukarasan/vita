@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './DeliveryAddress.css';
+import { UserInformation } from './UserInformation';
 
 export const DeliveryAddress = () => {
   const [useSameAddress, setUseSameAddress] = useState(false);
@@ -134,6 +135,11 @@ export const DeliveryAddress = () => {
           />
         </div>
       )}
+
+      {/* User Information Section */}
+      <h2>Your Information</h2>
+      <UserInformation />
+
     </div>
   );
 };
