@@ -19,21 +19,36 @@ export const DeliveryAddress = () => {
   const [zipCodeValidation, setZipCodeValidation] = useState({ valid: true, message: '' });
   const [zipCodeValidationBilling, setZipCodeValidationBilling] = useState({ valid: true, message: '' });
 
+  const isValidPostalCode = (postalCode: string) => {
+    const numericCode = Number(postalCode);
+    return /^\d{4}$/.test(postalCode) && numericCode >= 1000 && numericCode <= 9999;
+  };
+  
   const handleAddressChange = (isBilling = false) => async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    if (isBilling) {
-      setBillingAddress((prev) => ({ ...prev, [name]: value }));
-      if (name === 'postalCode') {
-        await handleZipCodeValidation(value, true);
-      }
-    } else {
-      setDeliveryAddress((prev) => ({ ...prev, [name]: value }));
-      if (name === 'postalCode') {
-        await handleZipCodeValidation(value);
+
+    // Limit the input to 4 digits only
+    if (value.length > 4 || !/^\d*$/.test(value)) {
+        return; 
+    }
+
+    const updateAddress = isBilling ? setBillingAddress : setDeliveryAddress;
+    updateAddress(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'postalCode') {
+      const isValid = isValidPostalCode(value);
+      const updateState = isBilling ? setZipCodeValidationBilling : setZipCodeValidation;
+      updateState({
+        valid: isValid,
+        message: isValid ? '' : 'Postal code must be between 1000 and 9999.'
+      });
+
+      if (isValid) {
+        await handleZipCodeValidation(value, isBilling);
       }
     }
-  };
-
+};
+    
   const handleZipCodeValidation = async (zipCode: string, isBilling = false) => {
     const updateState = isBilling ? setZipCodeValidationBilling : setZipCodeValidation;
     const setAddress = isBilling ? setBillingAddress : setDeliveryAddress;
@@ -81,21 +96,23 @@ export const DeliveryAddress = () => {
           onChange={handleAddressChange()}
           placeholder="Postal Code"
           className={getZipCodeClassName(zipCodeValidation.valid)}
+          min="1000"
+          max="9999"
         />
         {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
-        <input
-          type="text"
-          name="street"
-          value={deliveryAddress.street}
-          onChange={handleAddressChange()}
-          placeholder="Street"
-        />
         <input
           type="text"
           name="city"
           value={deliveryAddress.city}
           onChange={handleAddressChange()}
           placeholder="City"
+        />
+        <input
+          type="text"
+          name="street"
+          value={deliveryAddress.street}
+          onChange={handleAddressChange()}
+          placeholder="Street"
         />
       </div>
       <div className="use-same-address-container">
@@ -121,17 +138,17 @@ export const DeliveryAddress = () => {
           {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
           <input
             type="text"
-            name="street"
-            value={billingAddress.street}
-            onChange={handleAddressChange(true)}
-            placeholder="Street"
-          />
-          <input
-            type="text"
             name="city"
             value={billingAddress.city}
             onChange={handleAddressChange(true)}
             placeholder="City"
+          />
+          <input
+            type="text"
+            name="street"
+            value={billingAddress.street}
+            onChange={handleAddressChange(true)}
+            placeholder="Street"
           />
         </div>
       )}
