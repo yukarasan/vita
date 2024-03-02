@@ -30,6 +30,13 @@
   margin-top: 5px;
 }
 
+.billing-validation-message {
+  color: #ff0000; /* Red color for validation message */
+  font-size: 14px;
+  margin-top: 5px;
+  /* Add any additional styling specific to the billing validation message here */
+}
+
 /*  billing address */
 .billing-address {
   margin-bottom: 20px;
