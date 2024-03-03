@@ -8,7 +8,7 @@ import { DeliveryAddress } from './components/delivery_address/DeliveryAddress';
 
 function App() {
   const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart());
-  const totalItems = cart.length;
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div className="App">
