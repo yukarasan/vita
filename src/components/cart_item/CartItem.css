@@ -77,3 +77,13 @@
     grid-column: span 2; /* Make total amount and delete button span both columns */
   }
 }
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .cart-item {
+    grid-template-columns: 1fr 1fr; /* Change to two columns */
+  }
+  .cart-item-button {
+    grid-column: 4; /* Ensure the delete button occupies only one column */
+  }
+}
