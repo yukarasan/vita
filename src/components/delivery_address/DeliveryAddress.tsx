@@ -5,13 +5,15 @@ import { UserInformation } from '../user_information/UserInformation';
 export const DeliveryAddress = () => {
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState({
-    street: '',
+    addressline1: '',
+    addressline2: '',
     city: '',
     postalCode: '',
     country: 'Denmark',
   });
   const [billingAddress, setBillingAddress] = useState({
-    street: '',
+    addressline1: '',
+    addressline2: '',
     city: '',
     postalCode: '',
     country: 'Denmark',
@@ -113,15 +115,25 @@ export const DeliveryAddress = () => {
           required
         />
         
-        <label className="input-label">Street <span className="required-asterisk">*</span></label>
+        <label className="input-label">Address line 1 <span className="required-asterisk">*</span></label>
         <input
           type="text"
-          name="street"
-          value={deliveryAddress.street}
+          name="addressline1"
+          value={deliveryAddress.addressline1}
           onChange={handleAddressChange()}
-          placeholder="Street"
+          placeholder="e.g. Heimdalsvej 64"
           className="input-field"
           required
+        />
+
+        <label className="input-label">Address Line 2</label>
+        <input
+          type="text"
+          name="addressline2"
+          value={deliveryAddress.addressline2}
+          onChange={handleAddressChange()}
+          placeholder="e.g. 3th"
+          className="input-field"
         />
       </div>
 
@@ -161,13 +173,25 @@ export const DeliveryAddress = () => {
             placeholder="City"
           />
 
-          <label className="input-label">Street <span className="required-asterisk">*</span></label>
+          <label className="input-label">Address line 1 <span className="required-asterisk">*</span></label>
           <input
             type="text"
-            name="street"
-            value={billingAddress.street}
+            name="addressline1"
+            value={billingAddress.addressline1}
             onChange={handleAddressChange(true)}
-            placeholder="Street"
+            placeholder="e.g. Heimdalsvej 64"
+            className="input-field"
+            required
+          />
+
+          <label className="input-label">Address line 2</label>
+          <input
+            type="text"
+            name="addressline2"
+            value={billingAddress.addressline2}
+            onChange={handleAddressChange(true)}
+            placeholder="e.g. 3th"
+            className="input-field"
           />
 
         </div>
