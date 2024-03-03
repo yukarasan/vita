@@ -40,3 +40,11 @@
   .required-input {
     border-bottom: 2px solid red;
   }
+
+  .user-information-h2 {
+    text-align: left;
+    margin-left: 15px; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px; 
+    font-weight: 200; 
+  }
