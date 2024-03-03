@@ -12,8 +12,14 @@
   margin-right: 0.5rem;
 }
 
+.savings {
+  font-size: 1.2rem;
+  color: #28a745; /* A green color to highlight savings */
+  margin-top: 5px; /* Space above the savings display */
+}
+
 .amount {
-  font-weight: 200 ; /* Making the amount bolder */
+  font-weight: 200; /* Making the amount bolder */
   color: #000;
   font-size: 1.8rem; /* Larger font size for emphasis */
 }
