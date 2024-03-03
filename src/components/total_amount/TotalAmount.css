@@ -1,27 +1,29 @@
-
 .total {
-  font-weight: 600; /* Making the total label bolder */
-  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 600; 
+  font-size: 24px; 
   color: #333;
-  margin-bottom: 10px; /* Space between total label and amounts */
+  margin-bottom: 10px; 
+}
+
+.totalSavings {
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 600; 
+  font-size: 24px; 
+  color: #333;
+  margin-bottom: 10px; 
 }
 
 .currency-code {
-  font-size: 0.9rem; /* Slightly smaller to differentiate from the amount */
-  color: #666; /* Subtle color change */
+  font-size: 0.9rem; 
+  color: #666; 
   margin-right: 0.5rem;
 }
 
-.savings {
-  font-size: 1.2rem;
-  color: #28a745; /* A green color to highlight savings */
-  margin-top: 5px; /* Space above the savings display */
-}
-
 .amount {
-  font-weight: 200; /* Making the amount bolder */
+  font-weight: 200;
+  font-size: 1.8rem; 
   color: #000;
-  font-size: 1.8rem; /* Larger font size for emphasis */
 }
 
 .strikethrough {
@@ -29,7 +31,14 @@
   color: #999;
 }
 
-/* Additional styling for improved spacing and layout */
+.savings {
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 1.2rem;
+  color: #28a745; 
+  margin-top: 5px; 
+  font-weight: 200; 
+}
+
 ul, li {
   list-style-type: none;
   padding: 0;

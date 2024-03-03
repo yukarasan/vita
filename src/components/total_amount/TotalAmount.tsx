@@ -50,7 +50,7 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
         <span className="amount">{totalAmount.toFixed(2)}</span>
       </div>
       
-      <h2 className="total">Savings</h2>
+      <h2 className="totalSavings">Savings</h2>
       <div className="savings">
             <span>You saved: </span>
             <span className="currency-code">DKK</span>
