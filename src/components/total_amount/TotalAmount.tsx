@@ -27,32 +27,36 @@ const TotalAmount: React.FC<TotalAmountProps> = ({ cart }) => {
     setOriginalTotal(newOriginalTotal);
   }, [cart]);
 
-  const currencyCode = "DKK";
-  const formattedTotalAmount = new Intl.NumberFormat("en-AU", {
+  const totalSavings = originalTotal - totalAmount;
+  const formattedTotalSavings = new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "DKK",
     minimumFractionDigits: 2,
-  }).format(totalAmount).replace("DKK", "").trim();
-
-  const formattedOriginalTotalAmount = new Intl.NumberFormat("en-AU", {
-    style: "currency",
-    currency: "DKK",
-    minimumFractionDigits: 2,
-  }).format(originalTotal).replace("DKK", "").trim();
+  }).format(totalSavings).replace("DKK", "").trim();
 
   return (
     <div className="total-amount-container">
       <h2 className="total">Total</h2>
       {totalAmount !== originalTotal && (
-        <div className="original-amount">
-          <span className="currency-code">{currencyCode}</span>
-          <span className="amount strikethrough">{formattedOriginalTotalAmount}</span>
-        </div>
+        <>
+          <div className="original-amount">
+            <span className="currency-code">DKK</span>
+            <span className="amount strikethrough">{originalTotal.toFixed(2)}</span>
+          </div>
+        </>
       )}
       <div>
-        <span className="currency-code">{currencyCode}</span>
-        <span className="amount">{formattedTotalAmount}</span>
+        <span className="currency-code">DKK</span>
+        <span className="amount">{totalAmount.toFixed(2)}</span>
       </div>
+      
+      <h2 className="total">Savings</h2>
+      <div className="savings">
+            <span>You saved: </span>
+            <span className="currency-code">DKK</span>
+            <span className="amount">{formattedTotalSavings}</span>
+      </div>
+
     </div>
   );
 };
