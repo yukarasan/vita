@@ -75,6 +75,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
     <li className="cart-item">
       <div className="cart-item-top">
         <span className="cart-item-name">{cartItem.name}</span>
+        <span className="cart-item-price">{cartItem.price} kr</span>
         <QuantitySelector setCart={setCart} cartItem={cartItem} />
         <span className="cart-item-total">{formattedTotal} kr</span>
 {handleCalcRebate()}
