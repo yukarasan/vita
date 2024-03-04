@@ -15,6 +15,12 @@
   justify-self: start;
 }
 
+.cart-item-price {
+  font-size: 0.9em; /* Adjust as needed */
+  color: #666; /* Example color */
+  justify-self: start;
+}
+
 .quantity-selector {
   justify-self: end; /* Align the quantity selector to the right */
 }
@@ -75,13 +81,6 @@
   }
   .cart-item-total, .cart-item-button {
     grid-column: span 2; /* Make total amount and delete button span both columns */
-  }
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .cart-item {
-    grid-template-columns: 1fr 1fr; /* Change to two columns */
   }
   .cart-item-button {
     grid-column: 4; /* Ensure the delete button occupies only one column */
