@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './assets/styles/App.css';
 import CartList from './components/cart_list/CartList';
 import TotalAmount from './components/total_amount/TotalAmount';
@@ -7,7 +7,31 @@ import Cart from './data/Cart';
 import { DeliveryAddress } from './components/delivery_address/DeliveryAddress';
 
 function App() {
-  const [cart, setCart] = useState<CartItemType[]>(Cart.getInitialCart());
+  const [cart, setCart] = useState<CartItemType[]>([]);
+
+  useEffect(() => {
+    const initialCart = Cart.getInitialCart().map(item => {
+      let recurringOrder: 'none' | 'weekly' | 'monthly';
+      switch (item.recurringOrder) {
+        case 'weekly':
+          recurringOrder = 'weekly';
+          break;
+        case 'monthly':
+          recurringOrder = 'monthly';
+          break;
+        default:
+          recurringOrder = 'none';
+      }
+
+      return {
+        ...item,
+        recurringOrder
+      };
+    });
+
+    setCart(initialCart);
+  }, []);
+
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
@@ -30,6 +54,3 @@ function App() {
 }
 
 export default App;
-
-
-// TODO: Visual feedback on total for savings! 
