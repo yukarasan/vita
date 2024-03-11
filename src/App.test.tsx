@@ -5,6 +5,7 @@ import App from "./App";
 import TotalAmount from './components/total_amount/TotalAmount';
 import { DeliveryAddress } from './components/delivery_address/DeliveryAddress';
 import { CartItemType } from './lib/types';
+import { UserInformation } from './components/user_information/UserInformation';
 
 
 
@@ -73,6 +74,13 @@ describe("DeliveryAddress", () => {
                 expect(screen.getByText("Postal code must be between 1000 and 9999.")).toBeInTheDocument();
             });
         }
+    });
+    it("validates the email", async () => {
+        render(<UserInformation />);
+        const emailInput = screen.getByPlaceholderText("E-mail e.g., vita@vita.com");
+
+        fireEvent.change(emailInput, { target: { value: 'invalidemail' }});
+        expect(screen.getByText("Please enter a valid email address.")).toBeInTheDocument();
     });
 });
 
