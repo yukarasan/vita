@@ -1,5 +1,5 @@
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor} from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "./App";
 import TotalAmount from './components/total_amount/TotalAmount';
@@ -58,5 +58,22 @@ describe("DeliveryAddress", () => {
         render(<DeliveryAddress />);
         expect(screen.getByText("Delivery Address")).toBeInTheDocument();
     });
+
+    it("validates the postal code", async () => {
+        render(<DeliveryAddress />);
+        const postalCodeInputs = screen.getAllByPlaceholderText("Postal Code");
+
+        for (const postalCodeInput of postalCodeInputs) {
+            fireEvent.change(postalCodeInput, { target: { value: '1234' } });
+            await waitFor(() => {
+                expect(screen.queryByText("Failed to validate zip code.")).not.toBeInTheDocument();
+            });
+            fireEvent.change(postalCodeInput, { target: { value: '1' } });
+            await waitFor(() => {
+                expect(screen.getByText("Postal code must be between 1000 and 9999.")).toBeInTheDocument();
+            });
+        }
+    });
 });
+
 
