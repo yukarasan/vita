@@ -15,3 +15,10 @@ export interface CartItemType extends CatalogItemType {
   rebateQuantity: number; //for rebate quantity
   rebatePercent: number;  //for rebate percent
 }
+// Order data structure
+ export interface OrderData {
+  cart: CartItemType[];
+  deliveryAddress: DeliveryAddressType;
+  userInfo: UserInfoType;
+}
+
