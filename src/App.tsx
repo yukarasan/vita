@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './assets/styles/App.css';
 import CartList from './components/cart_list/CartList';
 import TotalAmount from './components/total_amount/TotalAmount';
@@ -8,6 +8,13 @@ import { DeliveryAddress } from './components/delivery_address/DeliveryAddress';
 
 function App() {
   const [cart, setCart] = useState<CartItemType[]>([]);
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    companyName: '',
+    vatNumber: '',
+  });
 
   useEffect(() => {
     const initialCart = Cart.getInitialCart().map(item => {
@@ -34,6 +41,39 @@ function App() {
 
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('https://eo30byi91bvqxol.m.pipedream.net', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cart,
+          deliveryAddress: DeliveryAddress,
+          userInfo,
+        }),
+      });
+  
+      if (response.ok) {
+        alert('Order submitted successfully!');
+      } else {
+        // Handle error response
+        alert('Failed to submit order. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      alert('An error occurred while submitting the order.');
+    }
+  };
+
+  const handleUserInfoChange = (newUserInfo) => {
+    setUserInfo(prevUserInfo => ({
+      ...prevUserInfo,
+      ...newUserInfo
+    }));
+  };
+  
   return (
     <div className="App">
       <header>
@@ -48,7 +88,8 @@ function App() {
           <TotalAmount cart={cart} />
         </div>
       </main>
-      {totalItems > 0 && <DeliveryAddress />}
+      {totalItems > 0 && <DeliveryAddress onUserInfoChange={handleUserInfoChange} />}
+      <button onClick={handleSubmit}>Submit Order</button>
     </div>
   );
 }
