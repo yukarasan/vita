@@ -9,6 +9,7 @@ export const UserInformation = ({ handleSubmit }) => {
     companyName: '',
     vatNumber: '',
     acceptMarketingEmails: false,
+    orderComment: '', 
   });
   const [emailValid, setEmailValid] = useState(true);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -96,6 +97,15 @@ export const UserInformation = ({ handleSubmit }) => {
         placeholder="VAT Number (8 digits for Denmark)"
         className="input-field"
       />
+      <label className="input-label">Order Comment</label>      
+      <textarea
+        name="orderComment"
+        value={userInfo.orderComment}
+        onChange={handleInputChange}
+        placeholder="Enter your comment (optional)"
+        className="input-field"
+      />
+
       <div className="marketing-checkbox">
         <input
           type="checkbox"
@@ -105,9 +115,6 @@ export const UserInformation = ({ handleSubmit }) => {
         />
         <label>Accept Marketing Emails</label>
       </div>
-
-
-
 
       <div className="terms-and-conditions">
         <input
@@ -121,9 +128,6 @@ export const UserInformation = ({ handleSubmit }) => {
       <button onClick={handleSubmit} disabled={!termsAccepted}>
         Submit Order
       </button>
-     
-
     </div>
-    
   );
 };
