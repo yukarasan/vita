@@ -15,7 +15,6 @@ function App() {
     companyName: '',
     vatNumber: '',
   });
-  const [termsAccepted, setTermsAccepted] = useState(false);
 
   useEffect(() => {
     const initialCart = Cart.getInitialCart().map(item => {
@@ -74,7 +73,7 @@ function App() {
       ...newUserInfo
     }));
   };
-  
+
   return (
     <div className="App">
       <header>
@@ -89,16 +88,7 @@ function App() {
           <TotalAmount cart={cart} />
         </div>
       </main>
-      {totalItems > 0 && <DeliveryAddress onUserInfoChange={handleUserInfoChange} />}
-    <input
-      type="checkbox"
-      checked={termsAccepted}
-      onChange={(e) => setTermsAccepted(e.target.checked)}
-    />
-    <label htmlFor="termsAccepted">I accept the terms & conditions</label>
-    <button onClick={handleSubmit} disabled={!termsAccepted}>
-      Submit Order
-    </button>
+      {totalItems > 0 && <DeliveryAddress onUserInfoChange={handleUserInfoChange} handleSubmit={handleSubmit}  />}
     </div>
   );
 }

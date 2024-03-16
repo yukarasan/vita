@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './DeliveryAddress.css';
 import { UserInformation } from '../user_information/UserInformation';
 
-export const DeliveryAddress = () => {
+export const DeliveryAddress = ({ handleSubmit }) => {
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState({
     addressline1: '',
@@ -194,10 +194,8 @@ export const DeliveryAddress = () => {
         />
 
       </div>
-
-  
       {/* User Information Section */}
-      <UserInformation />
+      <UserInformation handleSubmit={handleSubmit} />
     </div>
   );
   
