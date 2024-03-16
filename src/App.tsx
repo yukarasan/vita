@@ -1,25 +1,29 @@
-// App.js
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './assets/styles/App.css';
 import CartList from './components/cart_list/CartList';
 import TotalAmount from './components/total_amount/TotalAmount';
 import { CartItemType } from './lib/types';
 import Cart from './data/Cart';
 import Checkout from './components/checkout/Checkout';
+import { UserInfo, Address } from './lib/types';
+
+
+interface HomeProps {
+  cart: CartItemType[];
+  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>;
+  totalItems: number;
+}
 
 // Home page
-const Home = () => {
+const Home: React.FC<HomeProps> = ({ cart, setCart, totalItems }) => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartItemType[]>([]);
 
   useEffect(() => {
     const initialCart = Cart.getInitialCart();
     setCart(initialCart);
   }, []);
 
-  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  
   const handleNavigateToCheckout = () => {
     navigate('/checkout');
   };
@@ -60,19 +64,57 @@ function AppHeader() {
 }
 
 function App() {
+  const [cart, setCart] = useState<CartItemType[]>([]);
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+  const [userInfo, setUserInfo] = useState<UserInfo>({
+    name: '',
+    phone: '',
+    email: '',
+    companyName: '',
+    vatNumber: '',
+  });
+
+  const [deliveryAddress, setDeliveryAddress] = useState<Address>({
+    addressline1: '',
+    addressline2: '',
+    city: '',
+    postalCode: '',
+    country: 'Denmark',
+  });
+  const [billingAddress, setBillingAddress] = useState<Address>({
+    addressline1: '',
+    addressline2: '',
+    city: '',
+    postalCode: '',
+    country: 'Denmark',
+  });
+
   return (
     <Router>
       <div className="App">
         <AppHeader />
         <main className="checkout-layout">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/" element={<Home cart={cart} setCart={setCart} totalItems={totalItems} />} />
+            <Route path="/checkout" element={
+              <Checkout
+                cart={cart}
+                totalItems={totalItems} 
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                deliveryAddress={deliveryAddress}
+                billingAddress={billingAddress}
+                setDeliveryAddress={setDeliveryAddress}
+                setBillingAddress={setBillingAddress}
+              />
+            } />
           </Routes>
         </main>
       </div>
     </Router>
   );
 }
+
 
 export default App;

@@ -1,3 +1,5 @@
+  /* Checkout.css */
+
 .submit-order-btn {
     background-color: black;
     color: white;
@@ -11,8 +13,38 @@
     width: 100%; /* Make the button expand to the container width */
     box-sizing: border-box; /* Make sure padding doesn't affect the total width */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  }
+}
   
-  .submit-order-btn:hover {
+.submit-order-btn:hover {
     background-color: #333; /* Slightly lighter black on hover */
-  }
+}
+
+/* General styling for required fields */
+input:required {
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+/* Highlighting when the user interacts with the field */
+input:required:focus {
+  border-color: #4A90E2;
+  background-color: white;
+}
+
+/* Additional styles for when the user hovers over the submit button */
+.submit-order-btn:hover {
+  background-color: #555; /* Darken the button a bit when hovering */
+  color: white;
+}
+
+/* Highlighting when the user interacts with the field */
+input:focus {
+  border-color: #4A90E2;
+  background-color: white;
+}
+
+/* Styling for when the field is invalid (e.g., after a submit attempt) */
+.form-attempted-submit input:invalid {
+  border-color: red;
+  background-color: #ffe8e8;
+}

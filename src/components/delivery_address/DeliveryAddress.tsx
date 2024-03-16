@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
 import './DeliveryAddress.css';
 import { UserInformation } from '../user_information/UserInformation';
+import { UserInfo, Address } from '../../lib/types';
 
-export const DeliveryAddress = () => {
+interface DeliveryAddressProps {
+  userInfo: UserInfo;
+  setUserInfo: React.Dispatch<React.SetStateAction<UserInfo>>;
+  deliveryAddress: Address;
+  setDeliveryAddress: React.Dispatch<React.SetStateAction<Address>>;
+  billingAddress: Address;
+  setBillingAddress: React.Dispatch<React.SetStateAction<Address>>;
+}
+
+export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
+  userInfo,
+  setUserInfo,
+  deliveryAddress,
+  setDeliveryAddress,
+  billingAddress,
+  setBillingAddress,
+}) => {
   const [useSameAddress, setUseSameAddress] = useState(false);
-  const [deliveryAddress, setDeliveryAddress] = useState({
-    addressline1: '',
-    addressline2: '',
-    city: '',
-    postalCode: '',
-    country: 'Denmark',
-  });
-  const [billingAddress, setBillingAddress] = useState({
-    addressline1: '',
-    addressline2: '',
-    city: '',
-    postalCode: '',
-    country: 'Denmark',
-  });
+  
   const [zipCodeValidation, setZipCodeValidation] = useState({ valid: true, message: '' });
   const [zipCodeValidationBilling, setZipCodeValidationBilling] = useState({ valid: true, message: '' });
 
@@ -197,7 +201,7 @@ export const DeliveryAddress = () => {
 
   
       {/* User Information Section */}
-      <UserInformation />
+      <UserInformation userInfo={userInfo} setUserInfo={setUserInfo} />
     </div>
   );
   
