@@ -27,7 +27,6 @@ describe("App", () => {
                rebateQuantity: 2,
                rebatePercent: 50,
                giftWrap: false,
-               recurringOrder: "none",
                currency: "DKK",
                upsellProductId: null
              },
@@ -39,7 +38,6 @@ describe("App", () => {
                rebateQuantity: 1,
                rebatePercent: 25,
                giftWrap: false,
-               recurringOrder: "monthly",
                currency: "DKK",
                upsellProductId: null
              },
