@@ -67,12 +67,14 @@ function App() {
     }
   };
 
-  const handleUserInfoChange = (newUserInfo) => {
+  const handleUserInfoChange = (newUserInfo: Partial<typeof userInfo>) => {
     setUserInfo(prevUserInfo => ({
       ...prevUserInfo,
       ...newUserInfo
     }));
   };
+
+  
 
   return (
     <div className="App">

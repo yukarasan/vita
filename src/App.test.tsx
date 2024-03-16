@@ -56,12 +56,16 @@ describe("App", () => {
 
 describe("DeliveryAddress", () => {
     it("renders the delivery address form", () => {
-        render(<DeliveryAddress />);
+        render(<DeliveryAddress handleSubmit={function (): Promise<void> {
+            throw new Error("Function not implemented.");
+        } } />);
         expect(screen.getByText("Delivery Address")).toBeInTheDocument();
     });
 
     it("validates the postal code", async () => {
-        render(<DeliveryAddress />);
+        render(<DeliveryAddress handleSubmit={function (): Promise<void> {
+            throw new Error("Function not implemented.");
+        } } />);
         const postalCodeInputs = screen.getAllByPlaceholderText("Postal Code");
 
         for (const postalCodeInput of postalCodeInputs) {
@@ -76,7 +80,9 @@ describe("DeliveryAddress", () => {
         }
     });
     it("validates the email", async () => {
-        render(<UserInformation />);
+        render(<UserInformation handleSubmit={function (): Promise<void> {
+            throw new Error("Function not implemented.");
+        } } />);
         const emailInput = screen.getByPlaceholderText("E-mail e.g., vita@vita.com");
 
         fireEvent.change(emailInput, { target: { value: 'invalidemail' }});
