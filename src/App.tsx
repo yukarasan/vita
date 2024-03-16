@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ cart, setCart, totalItems }) => {
   useEffect(() => {
     const initialCart = Cart.getInitialCart();
     setCart(initialCart);
-  }, []);
+  }, [setCart]); 
 
   const handleNavigateToCheckout = () => {
     navigate('/checkout');
