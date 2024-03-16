@@ -1,8 +1,8 @@
 // Checkout.js
 import React, { useState, useRef } from 'react';
 import { DeliveryAddress } from '../delivery_address/DeliveryAddress';
-import "./Checkout.css";
 import { CheckoutProps } from '../../lib/types';
+import "./Checkout.css";
 
 const Checkout: React.FC<CheckoutProps> = ({
   cart,
@@ -21,12 +21,20 @@ const Checkout: React.FC<CheckoutProps> = ({
   const [orderComment, setOrderComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmitOrder = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    setAttemptedSubmit(true);
+
     if (!formRef.current || !formRef.current.checkValidity()) {
+      return;
+    }
+
+    if (!termsAccepted) {
+      setError('You must accept the terms and conditions to proceed.');
       return;
     }
 
@@ -69,7 +77,7 @@ const Checkout: React.FC<CheckoutProps> = ({
 
   return (
     <div className="checkout-container">
-      <form onSubmit={handleSubmitOrder} ref={formRef} noValidate>
+        <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
         <DeliveryAddress 
           userInfo={userInfo} 
           setUserInfo={setUserInfo} 
