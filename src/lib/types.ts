@@ -1,3 +1,6 @@
+
+import { Dispatch, SetStateAction } from 'react';
+
 export interface CatalogItemType {
   id: string
   name: string
@@ -11,15 +14,33 @@ export interface CatalogItemType {
 export interface CartItemType extends CatalogItemType {
   quantity: number
   giftWrap: boolean
-  recurringOrder: "none" | "weekly" | "monthly"
-  rebateQuantity: number; //for rebate quantity
-  rebatePercent: number;  //for rebate percent
+  rebateQuantity: number; 
+  rebatePercent: number;
 }
-// Order data structure
-/* export interface OrderData {
-  cart: CartItemType[];
-  deliveryAddress: DeliveryAddressType;
-  userInfo: UserInfoType;
-}
-*/
 
+export interface UserInfo {
+  name: string;
+  phone: string;
+  email: string;
+  companyName: string;
+  vatNumber: string;
+}
+
+export interface Address {
+  addressline1: string;
+  addressline2: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface CheckoutProps {
+  cart: CartItemType[];
+  totalItems: number;
+  userInfo: UserInfo;
+  setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+  deliveryAddress: Address;
+  setDeliveryAddress: Dispatch<SetStateAction<Address>>;
+  billingAddress: Address;
+  setBillingAddress: Dispatch<SetStateAction<Address>>;
+}

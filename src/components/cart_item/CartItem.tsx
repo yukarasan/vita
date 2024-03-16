@@ -60,8 +60,8 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
 
         const data = await response.json();
         const item = data.find(
-          (item: any) => item.id === cartItem.upsellProductId
-        );
+          (item: CatalogItemType) => item.id === cartItem.upsellProductId
+        );        
         setUpsellProduct(item);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -69,7 +69,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
     };
 
     fetchData();
-  }, []);
+  }, [cartItem.upsellProductId]);
 
   return (
     <li className="cart-item">
