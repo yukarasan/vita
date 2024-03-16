@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import "./UserInformation.css"
+import "./UserInformation.css";
 
-export const UserInformation = () => {
+export const UserInformation = ({ handleSubmit }) => {
   const [userInfo, setUserInfo] = useState({
     name: '',
     phone: '',
     email: '',
     companyName: '',
     vatNumber: '',
+    acceptMarketingEmails: false,
   });
   const [emailValid, setEmailValid] = useState(true);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const validateEmail = (email: string) => {
     if (email === "") {
@@ -22,17 +24,21 @@ export const UserInformation = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    if (name === 'email') {
-      setEmailValid(validateEmail(value));
-    }
-
-    if (name === 'phone' || name === 'vatNumber') {
-      if (!/^\d*$/.test(value) || value.length > 8) {
-        return; 
+    if (type === 'checkbox') {
+      setUserInfo(prev => ({ ...prev, [name]: checked }));
+    } else {
+      if (name === 'email') {
+        setEmailValid(validateEmail(value));
       }
-    }
 
-    setUserInfo(prev => ({ ...prev, [name]: value }));
+      if (name === 'phone' || name === 'vatNumber') {
+        if (!/^\d*$/.test(value) || value.length > 8) {
+          return; 
+        }
+      }
+
+      setUserInfo(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   return (
@@ -90,6 +96,34 @@ export const UserInformation = () => {
         placeholder="VAT Number (8 digits for Denmark)"
         className="input-field"
       />
+      <div className="marketing-checkbox">
+        <input
+          type="checkbox"
+          name="acceptMarketingEmails"
+          checked={userInfo.acceptMarketingEmails}
+          onChange={handleInputChange}
+        />
+        <label>Accept Marketing Emails</label>
+      </div>
+
+
+
+
+      <div className="terms-and-conditions">
+        <input
+          type="checkbox"
+          id="termsAccepted"
+          checked={termsAccepted}
+          onChange={(e) => setTermsAccepted(e.target.checked)}
+        />
+        <label htmlFor="termsAccepted">I accept the terms & conditions</label>
+      </div>
+      <button onClick={handleSubmit} disabled={!termsAccepted}>
+        Submit Order
+      </button>
+     
+
     </div>
+    
   );
 };
