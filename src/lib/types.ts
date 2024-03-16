@@ -11,14 +11,6 @@ export interface CatalogItemType {
 export interface CartItemType extends CatalogItemType {
   quantity: number
   giftWrap: boolean
-  recurringOrder: "none" | "weekly" | "monthly"
-  rebateQuantity: number; //for rebate quantity
-  rebatePercent: number;  //for rebate percent
+  rebateQuantity: number; 
+  rebatePercent: number;
 }
-// Order data structure
- export interface OrderData {
-  cart: CartItemType[];
-  deliveryAddress: DeliveryAddressType;
-  userInfo: UserInfoType;
-}
-
