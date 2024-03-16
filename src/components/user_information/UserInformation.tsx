@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "./UserInformation.css";
 
-export const UserInformation = ({ handleSubmit }) => {
+export const UserInformation = ({ handleSubmit }: { handleSubmit: () => Promise<void> }) => {
+
   const [userInfo, setUserInfo] = useState({
     name: '',
     phone: '',
@@ -23,24 +24,30 @@ export const UserInformation = ({ handleSubmit }) => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
+    const { name, value, type, checked } = e.target;
+  
     if (type === 'checkbox') {
       setUserInfo(prev => ({ ...prev, [name]: checked }));
     } else {
       if (name === 'email') {
         setEmailValid(validateEmail(value));
       }
-
+  
       if (name === 'phone' || name === 'vatNumber') {
         if (!/^\d*$/.test(value) || value.length > 8) {
-          return; 
+          return;
         }
       }
-
+  
       setUserInfo(prev => ({ ...prev, [name]: value }));
     }
   };
+  
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setUserInfo(prev => ({ ...prev, [name]: value }));
+  };
+  
 
   return (
     <div>
@@ -101,7 +108,7 @@ export const UserInformation = ({ handleSubmit }) => {
       <textarea
         name="orderComment"
         value={userInfo.orderComment}
-        onChange={handleInputChange}
+        onChange={handleTextareaChange}
         placeholder="Enter your comment (optional)"
         className="input-field"
       />

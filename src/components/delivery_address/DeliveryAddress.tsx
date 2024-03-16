@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './DeliveryAddress.css';
 import { UserInformation } from '../user_information/UserInformation';
+import { render } from '@testing-library/react';
 
-export const DeliveryAddress = ({ handleSubmit }) => {
+export const DeliveryAddress = ({ handleSubmit }: { handleSubmit: () => Promise<void> }) => {
   const [useSameAddress, setUseSameAddress] = useState(false);
   const [deliveryAddress, setDeliveryAddress] = useState({
     addressline1: '',
@@ -83,6 +84,12 @@ export const DeliveryAddress = ({ handleSubmit }) => {
       setZipCodeValidationBilling({ ...zipCodeValidation });
     }
   };
+
+  const mockHandleSubmit = jest.fn();
+
+test('renders DeliveryAddress component', () => {
+  render(<DeliveryAddress handleSubmit={mockHandleSubmit} />);
+});
 
   const getZipCodeClassName = (isValid: boolean) => (isValid ? '' : 'invalid');
 
