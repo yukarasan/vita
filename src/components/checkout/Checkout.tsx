@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { DeliveryAddress } from '../delivery_address/DeliveryAddress';
-
 import { useNavigate } from 'react-router-dom';
+import "./Checkout.css";
 
 const Checkout = () => {
-  // const history = useHistory(); // For React Router v5
   const navigate = useNavigate(); // v6
   const [orderSubmitted, setOrderSubmitted] = useState(false);
 
