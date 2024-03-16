@@ -76,3 +76,22 @@
   font-size: 16px; 
   color: #333; 
 }
+
+.proceed-checkout-btn {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px; /* This will give it rounded corners */
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px; /* Adjust as needed for spacing */
+  width: 100%; /* Make the button expand to the container width */
+  box-sizing: border-box; /* Make sure padding doesn't affect the total width */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.proceed-checkout-btn:hover {
+  background-color: #333; /* Slightly lighter black on hover */
+}
