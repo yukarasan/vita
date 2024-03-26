@@ -1,9 +1,10 @@
+/* Update the cart-item CSS to include styling for the image */
 .cart-item {
   display: grid;
-  grid-template-columns: 3fr 1fr auto 40px; /* Adjust the grid to allocate space for the delete button */
+  grid-template-columns: auto 1fr auto 40px; /* Adjusted grid to allocate space for the delete button */
   gap: 0.9rem;
-  padding: 0.5rem; /* Add some padding */
-  border-bottom: 1px solid #e0e0e0; /* If you want a separator */
+  padding: 0.5rem; /* Added padding */
+  border-bottom: 1px solid #e0e0e0; /* Separator */
 }
 
 .cart-item-top {
@@ -16,30 +17,30 @@
 }
 
 .cart-item-price {
-  font-size: 0.9em; /* Adjust as needed */
+  font-size: 0.9em; /* Adjusted font size */
   color: #666; /* Example color */
   justify-self: start;
 }
 
 .quantity-selector {
-  justify-self: end; /* Align the quantity selector to the right */
+  justify-self: end; /* Align quantity selector to the right */
 }
 
 .cart-item-total {
-  justify-self: start; /* Align the total amount to the left, close to the quantity selector */
-  margin-right: auto; /* Pushes the total amount to the left and the delete button to the right */
+  justify-self: start; /* Align total amount to the left */
+  margin-right: auto; /* Pushes total amount to the left and delete button to the right */
 }
 
 .gift-wrap-container {
   grid-column: 1 / -1;
-  display: block; /* Adjust as necessary for your layout */
+  display: block; /* Adjusted display property */
   margin-top: 0.5rem;
 }
 
 .cart-item-remove-icon,
 .cart-item-button {
-  justify-self: end; /* Aligns the button to the end */
-  grid-column: -1; /* Ensures the button is in the last column */
+  justify-self: end; /* Align button to the end */
+  grid-column: -1; /* Ensure button is in the last column */
 }
 
 .cart-item-button {
@@ -52,9 +53,9 @@
 
 /* Adjust styles for the gift wrap checkbox container */
 .gift-wrap-container {
-  grid-column: 1 / -1; /* spans all columns */
+  grid-column: 1 / -1; /* Spans all columns */
   display: block; /* or flex if needed */
-  padding-top: 0.5rem; /* add space between the checkbox and the item line */
+  padding-top: 0.5rem; /* Add space between checkbox and item line */
 }
 
 .gift-wrap-checkbox {
@@ -67,22 +68,15 @@
   height: 1.5rem;
   width: 1.5rem;
   stroke: currentColor;
-  transition: stroke 0.3s; /* Transition for the stroke color change */
+  transition: stroke 0.3s; /* Transition for stroke color change */
 }
 
 .cart-item-button:hover .cart-item-remove-icon {
   stroke: red; /* Change to red on hover */
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-  .cart-item {
-    grid-template-columns: 1fr 1fr; /* Change to two columns */
-  }
-  .cart-item-total, .cart-item-button {
-    grid-column: span 2; /* Make total amount and delete button span both columns */
-  }
-  .cart-item-button {
-    grid-column: 4; /* Ensure the delete button occupies only one column */
-  }
+/* Add styles for the image */
+.cart-item img {
+  max-width: 100%; /* Ensure the image fits within the container */
+  height: auto; /* Maintain aspect ratio */
 }
