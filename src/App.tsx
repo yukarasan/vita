@@ -20,9 +20,13 @@ const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const initialCart = Cart.getInitialCart();
-    setCart(initialCart);
-  }, [setCart]); 
+    // Check if the cart is empty before setting it to the initial cart
+    if (cart.length === 0) {
+      const initialCart = Cart.getInitialCart();
+      setCart(initialCart);
+    }
+  }, [setCart, cart]);
+  
 
   const handleNavigateToCheckout = () => {
     navigate('/checkout');
