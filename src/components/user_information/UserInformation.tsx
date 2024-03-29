@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import "./UserInformation.css"
+import './UserInformation.css';
 import { UserInfo } from '../../lib/types';
 
 interface UserInformationProps {
@@ -9,7 +9,7 @@ interface UserInformationProps {
 
 export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setUserInfo }) => {
   const validateEmail = (email: string) => {
-    if (email === "") {
+    if (email.trim() === "") {
       return true;
     }
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,15 +23,14 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
     if (name === 'email') {
       const emailValid = validateEmail(value);
       if (!emailValid) {
-        // Show some error or handle invalid email
         console.log("Invalid email format");
-        return; // Optionally, you might not want to update the state if the email is invalid
+        return;
       }
     }
 
     if (name === 'phone' || name === 'vatNumber') {
       if (!/^\d*$/.test(value) || value.length > 8) {
-        return; // Prevent updating the state if the input does not match the expected pattern
+        return;
       }
     }
 
