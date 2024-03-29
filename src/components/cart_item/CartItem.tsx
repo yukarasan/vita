@@ -77,21 +77,22 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         const response = await fetch(
           "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
         );
-
+  
         const data = await response.json();
         const item = data.find(
           (item: CatalogItemType) => item.id === cartItem.upsellProductId
         );        
         setUpsellProduct(item);
-        setImageUrl(item?.imageUrl || ''); // Assuming imageUrl is a key in the JSON data
-
+        // Directly use cartItem.imageUrl if upsellProductId is null, otherwise use the upsell product's image URL
+        setImageUrl(cartItem.upsellProductId ? item?.imageUrl || '' : cartItem.imageUrl);
+  
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+  
     fetchData();
-  }, [cartItem.upsellProductId]);
+  }, [cartItem.upsellProductId, cartItem.imageUrl]);  
 
   return (
     <li className="cart-item">
@@ -102,7 +103,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         <span className="cart-item-total">{formattedTotal} kr</span>
           {handleCalcRebate()}
         <p>{upsellProduct && upsellProduct.name}</p>
-        <img src={imageUrl} alt="Upsell Product Image" />
+        <img src={imageUrl} alt="Upsell Product Image" width="100" height="100" />
 
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
           <svg

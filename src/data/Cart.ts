@@ -12,7 +12,8 @@ class Cart {
         currency: "DKK",
         rebateQuantity: 3,
         rebatePercent: 10,
-        upsellProductId: null
+        upsellProductId: null,
+        imageUrl: "https://apopro.dk/Images/d3-vitamin-staerk-kapsler-90-%C2%B5g-kosttilskud-120-stk-214878"
       },
       {
         id: "vitamin-c-500-250",
@@ -23,7 +24,8 @@ class Cart {
         currency: "DKK",
         rebateQuantity: 2,
         rebatePercent: 25,
-        upsellProductId: null
+        upsellProductId: null,
+        imageUrl: "https://images.matas.dk/Assets_v3/600001-700000/636001-637000/636601-636700/636640/productlist_v1_x2.jpg"
       },
       {
         id: "vitamin-c-depot-500-250",
@@ -34,7 +36,8 @@ class Cart {
         currency: "DKK",
         rebateQuantity: 3,
         rebatePercent: 10,
-        upsellProductId: null
+        upsellProductId: null,
+        imageUrl: "https://images.matas.dk/Assets_v3/600001-700000/631001-632000/631601-631700/631666/product_v1_x2.jpg"
       },
       {
         id: "trimmer",
@@ -45,7 +48,8 @@ class Cart {
         currency: "DKK",
         rebateQuantity: 0,
         rebatePercent: 0,
-        upsellProductId: "trimmer-battery"
+        upsellProductId: "trimmer-battery",
+        imageUrl: "" // Example URL, replace with actual
       },
     ];
   }
