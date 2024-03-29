@@ -167,7 +167,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
         <label htmlFor="useSameAddress">Use same address for billing</label>
       </div>
 
-      <div className="address-container">
+      <div className="address-container billing-address">
         <h2>Billing Address</h2>
 
         <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
@@ -180,6 +180,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
           className={`input-field ${getZipCodeClassName(zipCodeValidationBilling.valid)}`}
           pattern="[0-9]*" 
           inputMode="numeric"
+          required
         />
         {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
 
@@ -190,6 +191,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
           value={billingAddress.city}
           onChange={handleAddressChange(true)}
           placeholder="City"
+          required
         />
 
         <label className="input-label">Address line 1 <span className="required-asterisk">*</span></label>
@@ -215,7 +217,6 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
 
       </div>
 
-  
       {/* User Information Section */}
       <UserInformation userInfo={userInfo} setUserInfo={setUserInfo} />
     </div>
