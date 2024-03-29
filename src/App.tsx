@@ -16,7 +16,7 @@ interface HomeProps {
 }
 
 // Home page
-const Home: React.FC<HomeProps> = ({ cart, setCart, totalItems }) => {
+const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
