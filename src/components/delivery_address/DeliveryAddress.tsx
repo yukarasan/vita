@@ -92,6 +92,22 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
 
   return (
     <div className="delivery-address">
+      <div>
+        <label className="input-label">Country</label>
+        <select 
+          name="country" 
+          value="denmark"
+          className="input-field"
+        >
+          <option value="denmark">🇩🇰 Denmark</option>
+          <option value="sweden">🇸🇪 Sweden</option>
+          <option value="norway">🇳🇴 Norway</option>
+          <option value="norway">🇹🇷 Turkey</option>
+          <option value="norway">🇵🇰 Pakistan</option>
+          <option value="norway">🇦🇫 Afghanistan</option>
+        </select>
+      </div>
+
       <div className="address-container">
         <h2>Delivery Address</h2>
         <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
