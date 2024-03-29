@@ -12,19 +12,32 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>();
   const [itemTotal, setItemTotal] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string>('');
-
+  const [triggerPulseId, setTriggerPulseId] = useState<string | null>(null); // New state to track item ID for pulsating effect
+  const [lastQuantity, setLastQuantity] = useState(cartItem.quantity);
 
   // Calculate rebate amount for the item
   const rebateAmount = cartItem.quantity >= cartItem.rebateQuantity
     ? cartItem.price * cartItem.quantity * (cartItem.rebatePercent / 100)
     : 0;
 
-  // Calculate item total with rebate
   useEffect(() => {
     const calculatedTotal = cartItem.price * cartItem.quantity;
     const discountedTotal = calculatedTotal - rebateAmount;
     setItemTotal(discountedTotal);
-  }, [cartItem.quantity, cartItem.price, rebateAmount]);
+    
+    // Trigger pulse animation only when quantity increases for the item with the matching ID
+    if (cartItem.id === triggerPulseId && cartItem.quantity > lastQuantity) {
+      setTriggerPulseId(cartItem.id);
+      setLastQuantity(cartItem.quantity);
+      
+      // Reset the pulse trigger after the animation
+      const timeoutId = setTimeout(() => {
+        setTriggerPulseId(null);
+      }, 1000); // Assuming the animation duration is 1s
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [cartItem.id, cartItem.quantity, cartItem.price, rebateAmount, lastQuantity, triggerPulseId]);
 
   const handleRemoveCartItem = () => {
     setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
@@ -41,17 +54,22 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   };
 
   const formattedTotal = itemTotal.toFixed(2);
+
   const handleCalcRebate = () => {
     if (cartItem.quantity < cartItem.rebateQuantity) {
       return (
-        <p>
+        <p key={`no-discount-${cartItem.quantity}`}>
           Buy {cartItem.rebateQuantity - cartItem.quantity} more for a discount!
         </p>
-      )
-    } else if (cartItem.rebateQuantity !== 0) {
-      return <p>You saved {cartItem.rebatePercent}% on this cartItem!</p>
+      );
+    } else if (cartItem.rebateQuantity !== 0 && cartItem.rebatePercent > 0) {
+      return (
+        <p className={`pulse-effect ${cartItem.id === triggerPulseId ? 'trigger-pulse' : ''}`} key={`discount-${cartItem.quantity}-${Date.now()}`}>
+          You saved {cartItem.rebatePercent}% on this item!
+        </p>
+      );
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,7 +100,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         <span className="cart-item-price">{cartItem.price} kr</span>
         <QuantitySelector setCart={setCart} cartItem={cartItem} />
         <span className="cart-item-total">{formattedTotal} kr</span>
-{handleCalcRebate()}
+          {handleCalcRebate()}
         <p>{upsellProduct && upsellProduct.name}</p>
         <img src={imageUrl} alt="Upsell Product Image" />
 
@@ -113,7 +131,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           />
         </label>
       </div>
-      <span className="rebate-amount">You Saved: {rebateAmount.toFixed(2)}</span>
+      <span className="rebate-amount">You Saved: {rebateAmount.toFixed(2)} kr</span>
     </li>
   );
 };

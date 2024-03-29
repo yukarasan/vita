@@ -80,3 +80,22 @@
   max-width: 100%; /* Ensure the image fits within the container */
   height: auto; /* Maintain aspect ratio */
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    color: green;
+  }
+  50% {
+    transform: scale(1.1);
+    color: limegreen;
+  }
+  100% {
+    transform: scale(1);
+    color: green;
+  }
+}
+
+.pulse-effect {
+  animation: pulse 0.5s;
+}
