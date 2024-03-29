@@ -18,14 +18,15 @@ interface HomeProps {
 // Home page
 const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   const navigate = useNavigate();
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   useEffect(() => {
-    // Check if the cart is empty before setting it to the initial cart
-    if (cart.length === 0) {
+    if (cart.length === 0 && isFirstLoad) {
       const initialCart = Cart.getInitialCart();
       setCart(initialCart);
+      setIsFirstLoad(false); 
     }
-  }, [setCart, cart]);
+  }, [setCart, cart, isFirstLoad]);
   
 
   const handleNavigateToCheckout = () => {
