@@ -25,7 +25,8 @@ describe("TotalAmount", () => {
         rebatePercent: 50,
         giftWrap: false,
         currency: "DKK",
-        upsellProductId: null
+        upsellProductId: null,
+        imageUrl: "https://apopro.dk/Images/d3-vitamin-staerk-kapsler-90-%C2%B5g-kosttilskud-120-stk-214878"
       },
       {
         id: "2",
@@ -36,7 +37,8 @@ describe("TotalAmount", () => {
         rebatePercent: 25,
         giftWrap: false,
         currency: "DKK",
-        upsellProductId: null
+        upsellProductId: null,
+        imageUrl: "https://images.matas.dk/Assets_v3/600001-700000/636001-637000/636601-636700/636640/productlist_v1_x2.jpg"
       },
     ];
 
