@@ -33,16 +33,16 @@ const Home: React.FC<HomeProps> = ({ cart, setCart, totalItems }) => {
       <div className="cart-container">
         <CartList cart={cart} setCart={setCart} />
       </div>
-      <div className="order-summary">
-        <TotalAmount cart={cart} />
-        {totalItems > 0 && (
+      {cart.length > 0 && ( 
+        <div className="order-summary">
+          <TotalAmount cart={cart} />
           <button onClick={handleNavigateToCheckout} className="proceed-checkout-btn">
             Checkout
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </>
-  );
+  );  
 };
 
 function AppHeader() {
