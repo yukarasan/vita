@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import './UserInformation.css';
 import { UserInfo } from '../../lib/types';
 
@@ -8,9 +8,12 @@ interface UserInformationProps {
 }
 
 export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setUserInfo }) => {
+  // State to track if the email is valid
+  const [emailValid, setEmailValid] = useState(true);
+
   const validateEmail = (email: string) => {
     if (email.trim() === "") {
-      return true;
+      return true; // Consider empty string as valid to allow clearing the field
     }
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -21,15 +24,14 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
     const updatedUserInfo = { ...userInfo, [name]: value };
 
     if (name === 'email') {
-      const emailValid = validateEmail(value);
-      if (!emailValid) {
-        console.log("Invalid email format");
-        return;
-      }
+      const isValid = validateEmail(value);
+      setEmailValid(isValid); // Update the email validity state
+      // Allow the state to update even if the email format is incorrect
     }
 
     if (name === 'phone' || name === 'vatNumber') {
       if (!/^\d*$/.test(value) || value.length > 8) {
+        // Prevent the state from updating for these conditions
         return;
       }
     }
@@ -72,9 +74,11 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
         value={userInfo.email}
         onChange={handleInputChange}
         placeholder="E-mail e.g., vita@vita.com"
-        className="input-field"
+        className={`input-field ${!emailValid ? 'invalid' : ''}`}
         required
       />
+      {/* Optionally show an error message if the email is invalid */}
+      {!emailValid && <p className="error-message">Invalid email format</p>}
       
       <label className="input-label">Company Name</label>
       <input
