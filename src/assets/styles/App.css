@@ -2,7 +2,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-
 .App {
   text-align: center;
   max-width: max-content;
@@ -11,30 +10,19 @@
 
 .checkout-layout {
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-@media (max-width: 768px) {
-  .checkout-layout {
-    flex-direction: column;
-  }
-}
-
-.checkout-layout {
-  display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start; 
+  gap: 20px;
   padding: 20px;
 }
 
 .cart-container {
   background: #ffffff;
   padding: 20px;
-  margin-right: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  flex: 1;
-  max-width: 70%;
+  flex-grow: 1; 
+  max-width: calc(70% - 20px); 
 }
 
 .order-summary {
@@ -42,10 +30,12 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  flex: 1;
-  max-width: 30%;
+  width: 30%; 
+  flex-grow: 0; 
+  flex-shrink: 0; 
 }
 
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .checkout-layout {
     flex-direction: column;
@@ -53,10 +43,9 @@
 
   .cart-container,
   .order-summary {
-    width: 100%;
+    width: 100%; 
     max-width: 100%;
-    margin-right: 0; /* No margin on the right for mobile */
-    margin-bottom: 20px; /* Adds space between the cards when they stack */
+    margin-right: 0;
   }
 }
 
@@ -73,8 +62,8 @@
 }
 
 .App header p {
-  font-size: 16px; 
-  color: #333; 
+  font-size: 16px;
+  color: #333;
 }
 
 .proceed-checkout-btn {
@@ -82,16 +71,16 @@
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 20px; /* This will give it rounded corners */
+  border-radius: 20px;
   font-size: 16px;
   cursor: pointer;
   outline: none;
-  margin-top: 15px; /* Adjust as needed for spacing */
-  width: 100%; /* Make the button expand to the container width */
-  box-sizing: border-box; /* Make sure padding doesn't affect the total width */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  margin-top: 15px; 
+  width: 50%; 
+  box-sizing: border-box;
+  transition: background-color 0.3s ease; 
 }
 
 .proceed-checkout-btn:hover {
-  background-color: #333; /* Slightly lighter black on hover */
+  background-color: #1c9052; /* Slightly lighter black on hover */
 }
