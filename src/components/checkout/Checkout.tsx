@@ -42,28 +42,31 @@ const Checkout: React.FC<CheckoutProps> = ({
     setError("");
 
     try {
-      await fetch('	https://webhook.site/241b5a4e-db02-4430-bed5-ab29eba15dc3', {
+      const response = await fetch('https://eo30byi91bvqxol.m.pipedream.net', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors',
         body: JSON.stringify({
           cart,
-          userInfo, 
-          deliveryAddress,
-          billingAddress,
+          // The userInfo and deliveryAddress need to be handled accordingly
+          userInfo: {}, // This should be updated to include actual userInfo
+          deliveryAddress: {}, // You need to fetch this from <DeliveryAddress />
           termsAccepted,
           receiveMarketing,
           orderComment,
         }),
       });
 
-      setOrderSubmitted(true);
+      if (response.ok) {
+        setOrderSubmitted(true);
+        setLoading(false);
+        // navigate('/order-success');
+      } else {
+        setError('Failed to submit order. Please try again later.');
+      }
     } catch (error) {
       console.error('Error submitting order:', error);
       setError('An error occurred while submitting the order.');
     }
-
-    setLoading(false);
   };
 
   if (orderSubmitted) {
