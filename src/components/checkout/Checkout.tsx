@@ -1,5 +1,6 @@
 // Checkout.js
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DeliveryAddress } from '../delivery_address/DeliveryAddress';
 import { CheckoutProps } from '../../lib/types';
 import "./Checkout.css";
@@ -14,7 +15,7 @@ const Checkout: React.FC<CheckoutProps> = ({
   billingAddress,
   setBillingAddress,
 }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [receiveMarketing, setReceiveMarketing] = useState(false);
@@ -42,31 +43,28 @@ const Checkout: React.FC<CheckoutProps> = ({
     setError("");
 
     try {
-      const response = await fetch('https://eo30byi91bvqxol.m.pipedream.net', {
+      await fetch('https://webhook.site/e907b0ec-d359-4997-80e5-0cae155d7337', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
         body: JSON.stringify({
           cart,
-          // The userInfo and deliveryAddress need to be handled accordingly
-          userInfo: {}, // This should be updated to include actual userInfo
-          deliveryAddress: {}, // You need to fetch this from <DeliveryAddress />
+          userInfo, 
+          deliveryAddress,
+          billingAddress,
           termsAccepted,
           receiveMarketing,
           orderComment,
         }),
       });
 
-      if (response.ok) {
-        setOrderSubmitted(true);
-        setLoading(false);
-        // navigate('/order-success');
-      } else {
-        setError('Failed to submit order. Please try again later.');
-      }
+      setOrderSubmitted(true);
     } catch (error) {
       console.error('Error submitting order:', error);
       setError('An error occurred while submitting the order.');
     }
+
+    setLoading(false);
   };
 
   if (orderSubmitted) {
@@ -74,13 +72,19 @@ const Checkout: React.FC<CheckoutProps> = ({
       <div className="order-success-message">
         <h2>Thank you!</h2>
         <p>Your order has been submitted successfully.</p>
+        <button onClick={() => navigate('/')} className="back-to-home-btn">
+          Continue Shopping
+        </button>
       </div>
     );
   }
 
   return (
+
     <div className="checkout-container">
-        <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
+      <button onClick={() => navigate(-1)} className="back-button">Back to Cart</button>
+
+      <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
         <DeliveryAddress 
           userInfo={userInfo} 
           setUserInfo={setUserInfo} 
