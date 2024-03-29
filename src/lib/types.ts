@@ -1,21 +1,19 @@
-
 import { Dispatch, SetStateAction } from 'react';
 
 export interface CatalogItemType {
-  id: string
-  name: string
-  price: number
-  currency: string
-  rebateQuantity: number
-  rebatePercent: number
-  upsellProductId: null | string
+  id: string;
+  name: string;
+  price: number;
+  currency: string;
+  rebateQuantity: number;
+  rebatePercent: number;
+  upsellProductId: null | string;
+  imageUrl: string; // Added the imageUrl property here
 }
 
 export interface CartItemType extends CatalogItemType {
-  quantity: number
-  giftWrap: boolean
-  rebateQuantity: number; 
-  rebatePercent: number;
+  quantity: number;
+  giftWrap: boolean;
 }
 
 export interface UserInfo {
