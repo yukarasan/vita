@@ -21,12 +21,18 @@ const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   useEffect(() => {
-    if (cart.length === 0 && isFirstLoad) {
-      const initialCart = Cart.getInitialCart();
-      setCart(initialCart);
-      setIsFirstLoad(false); 
-    }
-  }, [setCart, cart, isFirstLoad]);
+    const loadInitialCart = async () => {
+      if (cart.length === 0 && isFirstLoad) {
+        const initialCartItems = await Cart.getInitialCart();
+        setCart(initialCartItems);
+        setIsFirstLoad(false);
+      }
+    };
+  
+    loadInitialCart();
+  }, [cart, isFirstLoad, setCart]);
+  
+  
   
 
   const handleNavigateToCheckout = () => {
