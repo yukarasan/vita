@@ -3,13 +3,15 @@ import { useState } from "react"
 import "./QuantitySelector.css"
 
 interface QuantitySelectorProps {
-  cartItem: CartItemType
-  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>
+  cartItem: CartItemType;
+  setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>;
+  onIncrease: (id: string) => void; // New callback prop
 }
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   cartItem,
   setCart,
+  onIncrease
 }) => {
   const [inputQuantity, setInputQuantity] = useState(
     cartItem.quantity.toString()
@@ -60,15 +62,16 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 
   const handleIncreaseQuantity = () => {
     if (cartItem.quantity < 99) {
-      const newQuantity = cartItem.quantity + 1
-      setInputQuantity(newQuantity.toString())
+      const newQuantity = cartItem.quantity + 1;
+      setInputQuantity(newQuantity.toString());
       setCart((prev) =>
         prev.map((item) =>
           item.id === cartItem.id ? { ...item, quantity: newQuantity } : item
         )
-      )
+      );
+      onIncrease(cartItem.id); // Call the callback with the item's id
     }
-  }
+  };
 
   return (
     <div className="quantity-selector">
