@@ -8,12 +8,11 @@ interface UserInformationProps {
 }
 
 export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setUserInfo }) => {
-  // State to track if the email is valid
   const [emailValid, setEmailValid] = useState(true);
 
   const validateEmail = (email: string) => {
     if (email.trim() === "") {
-      return true; // Consider empty string as valid to allow clearing the field
+      return true;
     }
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -54,18 +53,30 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
         required
       />
       
-      <label className="input-label">Phone <span className="required-asterisk">*</span></label>
-      <input
-        type="tel"
-        name="phone"
-        value={userInfo.phone}
-        onChange={handleInputChange}
-        placeholder="Phone e.g., 40464269"
-        pattern="[0-9]*"
-        inputMode="numeric"
-        className="input-field"
-        required
-      />
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+        <select 
+          name="countryCode" 
+          value='+45' // Hardcoded value
+          className="input-field" 
+          style={{ marginRight: '8px' }}>
+          <option value="+45">🇩🇰 +45</option>
+          <option value="+46">🇸🇪 +46</option>
+          <option value="+47">🇳🇴 +47</option>
+          <option value="+47">🇹🇷 +90</option>
+          <option value="+47">🇵🇰 +92</option>
+          <option value="+47">🇦🇫 +93</option>
+        </select>
+
+        <input
+          type="tel"
+          name="phone"
+          value={userInfo.phone}
+          onChange={handleInputChange}
+          placeholder="Phone number"
+          className="input-field"
+          required
+        />
+      </div>
       
       <label className="input-label">Email Address <span className="required-asterisk">*</span></label>
       <input
