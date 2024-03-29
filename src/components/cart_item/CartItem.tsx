@@ -12,32 +12,16 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>();
   const [itemTotal, setItemTotal] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [triggerPulseId, setTriggerPulseId] = useState<string | null>(null); // New state to track item ID for pulsating effect
-  const [lastQuantity, setLastQuantity] = useState(cartItem.quantity);
+  const [triggerPulseId, setTriggerPulseId] = useState<string | null>(null);
 
-  // Calculate rebate amount for the item
   const rebateAmount = cartItem.quantity >= cartItem.rebateQuantity
     ? cartItem.price * cartItem.quantity * (cartItem.rebatePercent / 100)
     : 0;
 
   useEffect(() => {
-    const calculatedTotal = cartItem.price * cartItem.quantity;
-    const discountedTotal = calculatedTotal - rebateAmount;
-    setItemTotal(discountedTotal);
-    
-    // Trigger pulse animation only when quantity increases for the item with the matching ID
-    if (cartItem.id === triggerPulseId && cartItem.quantity > lastQuantity) {
-      setTriggerPulseId(cartItem.id);
-      setLastQuantity(cartItem.quantity);
-      
-      // Reset the pulse trigger after the animation
-      const timeoutId = setTimeout(() => {
-        setTriggerPulseId(null);
-      }, 1000); // Assuming the animation duration is 1s
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [cartItem.id, cartItem.quantity, cartItem.price, rebateAmount, lastQuantity, triggerPulseId]);
+    const calculatedTotal = cartItem.price * cartItem.quantity - rebateAmount;
+    setItemTotal(calculatedTotal);
+  }, [cartItem.quantity, cartItem.price, rebateAmount]);
 
   const handleRemoveCartItem = () => {
     setCart((prev) => prev.filter((item) => item.id !== cartItem.id));
@@ -46,12 +30,35 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   const handleGiftWrapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === cartItem.id
-          ? { ...item, giftWrap: event.target.checked }
-          : item
+        item.id === cartItem.id ? { ...item, giftWrap: event.target.checked } : item
       )
     );
   };
+
+  const handleItemIncrease = (id: string) => {
+    setTriggerPulseId(id); // Set the id of the item being increased to trigger the pulse effect
+  
+    // Reset the pulse trigger after the animation
+    setTimeout(() => {
+      setTriggerPulseId(null); // Clear the trigger to reset the pulse effect
+    }, 500);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json");
+        const data = await response.json();
+        const item = data.find((item: CatalogItemType) => item.id === cartItem.upsellProductId);
+        setUpsellProduct(item);
+        setImageUrl(cartItem.upsellProductId ? item?.imageUrl || '' : cartItem.imageUrl);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, [cartItem.upsellProductId, cartItem.imageUrl]);
 
   const formattedTotal = itemTotal.toFixed(2);
 
@@ -63,43 +70,22 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         </p>
       );
     } else if (cartItem.rebateQuantity !== 0 && cartItem.rebatePercent > 0) {
+      // Apply "animate-pulse" class only if this item's ID matches the triggerPulseId
+      const pulseClass = cartItem.id === triggerPulseId ? 'animate-pulse' : '';
       return (
-        <p className={`pulse-effect ${cartItem.id === triggerPulseId ? 'trigger-pulse' : ''}`} key={`discount-${cartItem.quantity}-${Date.now()}`}>
+        <p className={`${pulseClass}`} key={`discount-${cartItem.quantity}-${Date.now()}`}>
           You saved {cartItem.rebatePercent}% on this item!
         </p>
       );
     }
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
-        );
-  
-        const data = await response.json();
-        const item = data.find(
-          (item: CatalogItemType) => item.id === cartItem.upsellProductId
-        );        
-        setUpsellProduct(item);
-        // Directly use cartItem.imageUrl if upsellProductId is null, otherwise use the upsell product's image URL
-        setImageUrl(cartItem.upsellProductId ? item?.imageUrl || '' : cartItem.imageUrl);
-  
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-  
-    fetchData();
-  }, [cartItem.upsellProductId, cartItem.imageUrl]);  
+  };  
 
   return (
     <li className="cart-item">
       <div className="cart-item-top">
         <span className="cart-item-name">{cartItem.name}</span>
         <span className="cart-item-price">{cartItem.price} kr</span>
-        <QuantitySelector setCart={setCart} cartItem={cartItem} />
+        <QuantitySelector setCart={setCart} cartItem={cartItem} onIncrease={handleItemIncrease} />
         <span className="cart-item-total">{formattedTotal} kr</span>
           {handleCalcRebate()}
         <p>{upsellProduct && upsellProduct.name}</p>

@@ -81,6 +81,7 @@
   height: auto; /* Maintain aspect ratio */
 }
 
+/* Keep the keyframes definition as is */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -96,6 +97,7 @@
   }
 }
 
-.pulse-effect {
+/* Apply the animation only when `.animate-pulse` class is present */
+.animate-pulse {
   animation: pulse 0.5s;
 }
