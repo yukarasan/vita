@@ -1,13 +1,15 @@
 .quantity-selector input[type="text"] {
-  width: 3em;
-  border: none; 
-  background-color: transparent; 
+  width: 2em;
+  border: 1px solid #eaeaea; /* Light border for definition */
+  background-color: #ffffff; /* White background */
   text-align: center;
   outline: none;
   font-size: 1em;
-  cursor: pointer;
+  margin: 0 5px; /* Space between buttons and input */
+  border-radius: 4px; /* Match the button's border-radius */
+  color: #333; /* Text color for contrast */
 }
 
 .quantity-selector input[type="text"]:focus {
-  border-bottom: 1px solid #000;
+  border-color: #4CAF50; /* Highlight with theme green when focused */
 }
