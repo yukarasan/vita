@@ -118,7 +118,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           />
         </label>
       </div>
-      <span className="rebate-amount">You Saved: {rebateAmount.toFixed(2)} kr</span>
+      <span className="rebate-amount">Total Saved: {rebateAmount.toFixed(2)} kr</span>
     </li>
   );
 };
