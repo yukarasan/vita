@@ -1,17 +1,37 @@
-/* App.css */
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* Import Roboto Slab and Lato from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
 
 .App {
   text-align: center;
   max-width: max-content;
   margin: auto;
+  font-family: 'Roboto Slab', 'Lato', sans-serif;
 }
 
+.App header h1,
+.App header p { 
+  text-align: left;
+  margin-left: 30px;
+  font-family: 'Roboto Slab', serif;
+}
+
+.App header h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #335e35;
+}
+
+.App header p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+
+/* Layout adjustments */
 .checkout-layout {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start; 
+  align-items: flex-start;
   gap: 20px;
   padding: 20px;
 }
@@ -19,19 +39,20 @@
 .cart-container {
   background: #ffffff;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keeping the shadow soft */
   border-radius: 8px;
-  flex-grow: 1; 
-  max-width: calc(70% - 20px); 
+  flex-grow: 1;
+  max-width: calc(70% - 20px);
 }
 
+/* Adjusted order-summary to have a different background for contrast */
 .order-summary {
-  position: -webkit-sticky; /* For Safari */
+  position: -webkit-sticky;
   position: sticky;
-  top: 20px; 
-  background: #ffffff;
+  top: 20px;
+  background: #F8F8F8; /* Light gray background for slight contrast */
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Matching cart-container shadow */
   border-radius: 8px;
   width: 30%;
   flex-grow: 0;
@@ -39,8 +60,7 @@
   align-self: flex-start;
 }
 
-
-/* Responsive adjustments */
+/* Responsive Design */
 @media (max-width: 900px) {
   .checkout-layout {
     flex-direction: column;
@@ -48,31 +68,15 @@
 
   .cart-container,
   .order-summary {
-    width: 100%; 
+    width: 100%;
     max-width: 100%;
     margin-right: 0;
   }
 }
 
-.App header h1,
-.App header p { 
-  text-align: left;
-  margin-left: 30px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-}
-
-.App header h1 {
-  font-size: 32px; 
-}
-
-.App header p {
-  font-size: 16px;
-  color: #333;
-}
-
+/* Button styling with theme color */
 .proceed-checkout-btn {
-  background-color: black;
+  background-color: #4CAF50; /* Theme green color */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -80,12 +84,12 @@
   font-size: 16px;
   cursor: pointer;
   outline: none;
-  margin-top: 15px; 
-  width: 50%; 
+  margin-top: 15px;
+  width: 50%;
   box-sizing: border-box;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .proceed-checkout-btn:hover {
-  background-color: #1c9052; /* Slightly lighter black on hover */
+  background-color: #43A047; /* Slightly darker green on hover for feedback */
 }
