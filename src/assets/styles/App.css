@@ -26,14 +26,19 @@
 }
 
 .order-summary {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 20px; 
   background: #ffffff;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  width: 30%; 
-  flex-grow: 0; 
-  flex-shrink: 0; 
+  width: 30%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
