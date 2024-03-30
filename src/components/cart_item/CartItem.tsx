@@ -89,7 +89,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         <span className="cart-item-total">{formattedTotal} kr</span>
           {handleCalcRebate()}
         <p>{upsellProduct && upsellProduct.name}</p>
-        <img src={imageUrl} alt="Upsell Product Image" width="100" height="100" />
+        <img src={imageUrl} alt="Upsell Product Image" width="100" height="100" className="cart-item-image" />
 
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
           <svg

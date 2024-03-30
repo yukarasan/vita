@@ -10,7 +10,6 @@ interface CartListProps {
 const CartList: React.FC<CartListProps> = ({ cart, setCart }) => {
   return (
     <div className="cart-list-container">
-      {/* Rename the class for styling */}
       {cart.length > 0 ? (
         <ul className="cart-list">
           {cart.map((cartItem) => (
@@ -20,7 +19,6 @@ const CartList: React.FC<CartListProps> = ({ cart, setCart }) => {
       ) : (
         <p className="empty-cart-message">Your cart is empty.</p>
       )}
-      {/* Add a class for styling */}
     </div>
   )
 }
