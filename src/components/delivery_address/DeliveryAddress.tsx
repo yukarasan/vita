@@ -91,135 +91,137 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
   const getZipCodeClassName = (isValid: boolean) => (isValid ? '' : 'invalid');
 
   return (
-    <div className="delivery-address">
-      <div>
-        <label className="input-label">Country</label>
-        <select 
-          name="country" 
-          value="denmark"
-          className="input-field"
-        >
-          <option value="denmark">🇩🇰 Denmark</option>
-          <option value="sweden">🇸🇪 Sweden</option>
-          <option value="norway">🇳🇴 Norway</option>
-          <option value="norway">🇹🇷 Turkey</option>
-          <option value="norway">🇵🇰 Pakistan</option>
-          <option value="norway">🇦🇫 Afghanistan</option>
-        </select>
-      </div>
+    <div className="address-forms-container">
+        <div className="address-section delivery-section">
+            <div>
+                <label className="input-label">Country</label>
+                <select 
+                    name="country" 
+                    value="denmark"
+                    className="input-field"
+                >
+                    <option value="denmark">🇩🇰 Denmark</option>
+                    <option value="sweden">🇸🇪 Sweden</option>
+                    <option value="norway">🇳🇴 Norway</option>
+                    <option value="turkey">🇹🇷 Turkey</option>
+                    <option value="pakistan">🇵🇰 Pakistan</option>
+                    <option value="afghanistan">🇦🇫 Afghanistan</option>
+                </select>
+            </div>
 
-      <div className="address-container">
-        <h2>Delivery Address</h2>
-        <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
-        <input
-          type="tel"
-          name="postalCode"
-          value={deliveryAddress.postalCode}
-          onChange={handleAddressChange()}
-          placeholder="Postal Code"
-          className={`input-field ${getZipCodeClassName(zipCodeValidation.valid)}`}
-          pattern="[0-9]*" 
-          inputMode="numeric"
-          required
-        />
-        {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
-        
-        <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
-        <input
-          type="text"
-          name="city"
-          value={deliveryAddress.city}
-          onChange={handleAddressChange()}
-          placeholder="City"
-          className="input-field"
-          required
-        />
-        
-        <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
-        <input
-          type="text"
-          name="addressline1"
-          value={deliveryAddress.addressline1}
-          onChange={handleAddressChange()}
-          placeholder="e.g. Heimdalsvej 64"
-          className="input-field"
-          required
-        />
+            <div className="address-container">
+                <h2>Delivery Address</h2>
+                <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
+                <input
+                  type="tel"
+                  name="postalCode"
+                  value={deliveryAddress.postalCode}
+                  onChange={handleAddressChange()}
+                  placeholder="Postal Code"
+                  className={`input-field ${getZipCodeClassName(zipCodeValidation.valid)}`}
+                  pattern="[0-9]*" 
+                  inputMode="numeric"
+                  required
+                />
+                {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
 
-        <label className="input-label">Address Line 2</label>
-        <input
-          type="text"
-          name="addressline2"
-          value={deliveryAddress.addressline2}
-          onChange={handleAddressChange()}
-          placeholder="e.g. 3th"
-          className="input-field"
-        />
-      </div>
+                <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
+                <input
+                  type="text"
+                  name="city"
+                  value={deliveryAddress.city}
+                  onChange={handleAddressChange()}
+                  placeholder="City"
+                  className="input-field"
+                  required
+                />
 
-      <div className="use-same-address-container">
-        <input
-          type="checkbox"
-          id="useSameAddress"
-          checked={useSameAddress}
-          onChange={handleUseSameAddressToggle}
-        />
-        <label htmlFor="useSameAddress">Use same address for billing</label>
-      </div>
+                <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
+                <input
+                  type="text"
+                  name="addressline1"
+                  value={deliveryAddress.addressline1}
+                  onChange={handleAddressChange()}
+                  placeholder="e.g. Heimdalsvej 64"
+                  className="input-field"
+                  required
+                />
 
-      <div className="address-container billing-address">
-        <h2>Billing Address</h2>
+                <label className="input-label">Address Line 2</label>
+                <input
+                  type="text"
+                  name="addressline2"
+                  value={deliveryAddress.addressline2}
+                  onChange={handleAddressChange()}
+                  placeholder="e.g. 3th"
+                  className="input-field"
+                />
+            </div>
 
-        <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
-        <input
-          type="tel"
-          name="postalCode"
-          value={billingAddress.postalCode}
-          onChange={handleAddressChange(true)}
-          placeholder="Postal Code"
-          className={`input-field ${getZipCodeClassName(zipCodeValidationBilling.valid)}`}
-          pattern="[0-9]*" 
-          inputMode="numeric"
-          required
-        />
-        {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
+            <div className="use-same-address-container">
+                <input
+                  type="checkbox"
+                  id="useSameAddress"
+                  checked={useSameAddress}
+                  onChange={handleUseSameAddressToggle}
+                />
+                <label htmlFor="useSameAddress">Use same address for billing</label>
+            </div>
+        </div>
 
-        <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
-        <input
-          type="text"
-          name="city"
-          value={billingAddress.city}
-          onChange={handleAddressChange(true)}
-          placeholder="City"
-          required
-        />
+        <div className="address-section billing-section">
+            <div className="address-container billing-address">
+                <h2>Billing Address</h2>
+                  <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
+                  <input
+                    type="tel"
+                    name="postalCode"
+                    value={billingAddress.postalCode}
+                    onChange={handleAddressChange(true)}
+                    placeholder="Postal Code"
+                    className={`input-field ${getZipCodeClassName(zipCodeValidationBilling.valid)}`}
+                    pattern="[0-9]*" 
+                    inputMode="numeric"
+                    required
+                  />
+                  {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
 
-        <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
-        <input
-          type="text"
-          name="addressline1"
-          value={billingAddress.addressline1}
-          onChange={handleAddressChange(true)}
-          placeholder="e.g. Heimdalsvej 64"
-          className="input-field"
-          required
-        />
+                  <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={billingAddress.city}
+                    onChange={handleAddressChange(true)}
+                    placeholder="City"
+                    required
+                  />
 
-        <label className="input-label">Address line 2</label>
-        <input
-          type="text"
-          name="addressline2"
-          value={billingAddress.addressline2}
-          onChange={handleAddressChange(true)}
-          placeholder="e.g. 3th"
-          className="input-field"
-        />
+                  <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
+                  <input
+                    type="text"
+                    name="addressline1"
+                    value={billingAddress.addressline1}
+                    onChange={handleAddressChange(true)}
+                    placeholder="e.g. Heimdalsvej 64"
+                    className="input-field"
+                    required
+                  />
 
-      </div>
+                  <label className="input-label">Address line 2</label>
+                  <input
+                    type="text"
+                    name="addressline2"
+                    value={billingAddress.addressline2}
+                    onChange={handleAddressChange(true)}
+                    placeholder="e.g. 3th"
+                    className="input-field"
+                  />
+            </div>
+        </div>
 
-      {/* User Information Section */}
-      <UserInformation userInfo={userInfo} setUserInfo={setUserInfo} />
+        {/* User Information Section */}
+        <UserInformation userInfo={userInfo} setUserInfo={setUserInfo} />
     </div>
-  );
+);
   
 };

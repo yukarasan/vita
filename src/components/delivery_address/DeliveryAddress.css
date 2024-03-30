@@ -1,5 +1,5 @@
-/* Delivery Address General Style Enhancements */
-.delivery-address, .billing-address {
+/* General Style Enhancements for Both Sections */
+.address-section {
   margin-bottom: 20px;
   font-family: 'Roboto Slab', 'Lato', sans-serif;
   color: #333;
@@ -9,15 +9,16 @@
   padding: 20px;
 }
 
-.delivery-address h2, .billing-address h2 {
+.address-section h2 {
+  text-align: left; 
   margin-bottom: 10px;
-  color: #335e35; /* Theme green for heading */
-  font-size: 1.25rem; /* Slightly larger for clarity */
-  font-weight: 700; /* Bold for importance */
+  color: #335e35; 
+  font-size: 1.25rem;
+  font-weight: 700; 
 }
 
 /* Input Styles */
-.delivery-address input, .billing-address input, .input-field {
+.address-section input, .input-field {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -27,12 +28,12 @@
   font-family: 'Lato', sans-serif; /* Consistent font for readability */
 }
 
-.delivery-address input:focus, .billing-address input:focus, .input-field:focus {
+.address-section input:focus, .input-field:focus, .required-input:focus {
   outline: none;
-  border-color: #007bff; /* Blue for focus */
+  border-color: #4CAF50;
 }
 
-.delivery-address input.invalid, .billing-address input.invalid, .required-input {
+.address-section input.invalid, .required-input {
   border-color: #ff0000; /* Red for error indication */
 }
 
@@ -51,12 +52,6 @@
   font-size: 16px; /* Slightly larger for clarity */
 }
 
-/* Target labels that have required fields */
-.input-label .required-asterisk {
-  color: red;
-}
-
-/* New CSS rule to make labels with required fields bold */
 .input-label.required-field {
   font-weight: 700; /* Bold for labels with required fields */
 }
@@ -71,35 +66,13 @@
   font-size: 13px;
 }
 
-/* Address Container and Same Address Checkbox Styling */
-.address-container h2, .use-same-address-container h2 {
-  text-align: left;
-  font-family: 'Roboto Slab', sans-serif;
-  font-weight: 700; /* Bold for headers */
-  color: #335e35; /* Theme color for headers */
-}
-
-.use-same-address-container {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between checkbox and label */
-  margin-top: 20px; /* Extra spacing */
-}
-
-.use-same-address-container label {
-  cursor: pointer;
-  color: #333; /* Dark for readability */
-  font-size: 16px; /* Consistent font size */
-}
-
-/* Ensuring Consistency Across All Form Elements */
+/* Select Dropdown Styles */
 .input-field, select.input-field {
   border: 1px solid #eaeaea; /* Light border for inputs and selects */
   border-radius: 4px; /* Consistent rounding */
   font-size: 16px; /* Readable font size */
 }
 
-/* Select dropdown specific styles for the arrow */
 select.input-field {
   -webkit-appearance: none; /* Remove default arrow */
   -moz-appearance: none;
