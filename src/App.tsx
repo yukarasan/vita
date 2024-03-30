@@ -73,6 +73,22 @@ function AppHeader() {
 function App() {
   const [cart, setCart] = useState<CartItemType[]>([]);
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 1000);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', 
+    });
+  };
 
   const [userInfo, setUserInfo] = useState<UserInfo>({
     name: '',
@@ -118,6 +134,11 @@ function App() {
             } />
           </Routes>
         </main>
+        {showBackToTop && (
+          <button onClick={scrollToTop} className="back-to-top-btn">
+            Go Back to Top
+          </button>
+        )}
       </div>
     </Router>
   );
