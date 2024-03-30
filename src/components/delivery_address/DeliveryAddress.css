@@ -1,118 +1,111 @@
-.delivery-address {
+/* Delivery Address General Style Enhancements */
+.delivery-address, .billing-address {
   margin-bottom: 20px;
+  font-family: 'Roboto Slab', 'Lato', sans-serif;
+  color: #333;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
 }
 
-.delivery-address h2 {
+.delivery-address h2, .billing-address h2 {
   margin-bottom: 10px;
+  color: #335e35; /* Theme green for heading */
+  font-size: 1.25rem; /* Slightly larger for clarity */
+  font-weight: 700; /* Bold for importance */
 }
 
-.delivery-address input {
-  width: calc(100% - 22px);
+/* Input Styles */
+.delivery-address input, .billing-address input, .input-field {
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   transition: border-color 0.3s ease;
+  font-family: 'Lato', sans-serif; /* Consistent font for readability */
 }
 
-.delivery-address input:focus {
+.delivery-address input:focus, .billing-address input:focus, .input-field:focus {
   outline: none;
-  border-color: #007bff; /* Blue border color when input is focused */
+  border-color: #007bff; /* Blue for focus */
 }
 
-.delivery-address input.invalid {
-  border-color: #ff0000; /* Red border color for invalid input */
+.delivery-address input.invalid, .billing-address input.invalid, .required-input {
+  border-color: #ff0000; /* Red for error indication */
 }
 
-.delivery-address .validation-message {
-  color: #ff0000; /* Red color for validation message */
+/* Validation Messages */
+.validation-message, .billing-validation-message {
+  color: #ff0000; /* Consistent error message styling */
   font-size: 14px;
   margin-top: 5px;
 }
 
-.billing-validation-message {
-  color: #ff0000; /* Red color for validation message */
-  font-size: 14px;
-  margin-top: 5px;
-  /* Add any additional styling specific to the billing validation message here */
-}
-
-/*  billing address */
-.billing-address {
-  margin-bottom: 20px;
-}
-
-.billing-address h2 {
-  margin-bottom: 10px;
-}
-
-.billing-address input {
-  width: calc(100% - 22px); 
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease; 
-}
-
-.billing-address input:focus {
-  outline: none;
-  border-color: #007bff; /* Blue border color when input is focused */
-}
-
-.billing-address input.invalid {
-  border-color: #ff0000; /* Red border color for invalid input */
-}
-
-.billing-address .validation-message {
-  color: #ff0000; /* Red color for validation message */
-  font-size: 14px;
-  margin-top: 5px;
-}
-
+/* Label Styling */
 .input-label {
   display: block;
   margin-bottom: 5px;
-  margin-left: 15px;
-  color: #333;
-  font-size: 16px;
-  text-align: left;
+  color: #335e35; /* Theme color for consistency */
+  font-size: 16px; /* Slightly larger for clarity */
 }
 
+/* Target labels that have required fields */
+.input-label .required-asterisk {
+  color: red;
+}
+
+/* New CSS rule to make labels with required fields bold */
+.input-label.required-field {
+  font-weight: 700; /* Bold for labels with required fields */
+}
 
 .input-label .required-asterisk {
   color: red;
 }
 
-.input-field {
-  width: 100%;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  font-size: 13px;
-  color: #333;
-}
-
-.input-field:focus {
-  outline: none;
-  border-bottom: 2px solid #555;
-}
-
+/* Placeholder Styles */
 .input-field::placeholder {
   color: #aaa;
   font-size: 13px;
 }
 
-.required-input {
-  border-bottom: 2px solid red;
-}
-
-.address-container h2, 
-.use-same-address-container h2 { 
+/* Address Container and Same Address Checkbox Styling */
+.address-container h2, .use-same-address-container h2 {
   text-align: left;
-  margin-left: 15px; 
-  font-family: 'Montserrat', sans-serif;
-  font-size: 24px; /* Adjust the size as needed */
-  font-weight: 200; /* Use 700 for bold text if needed */
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 700; /* Bold for headers */
+  color: #335e35; /* Theme color for headers */
 }
 
+.use-same-address-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between checkbox and label */
+  margin-top: 20px; /* Extra spacing */
+}
+
+.use-same-address-container label {
+  cursor: pointer;
+  color: #333; /* Dark for readability */
+  font-size: 16px; /* Consistent font size */
+}
+
+/* Ensuring Consistency Across All Form Elements */
+.input-field, select.input-field {
+  border: 1px solid #eaeaea; /* Light border for inputs and selects */
+  border-radius: 4px; /* Consistent rounding */
+  font-size: 16px; /* Readable font size */
+}
+
+/* Select dropdown specific styles for the arrow */
+select.input-field {
+  -webkit-appearance: none; /* Remove default arrow */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23335e35" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+}

@@ -42,7 +42,7 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
     <div>
       <h2 className="user-information-h2">Your Information</h2>
       
-      <label className="input-label">Full Name <span className="required-asterisk">*</span></label>
+      <label className="input-label required-field">Full Name <span className="required-asterisk">*</span></label>
       <input
         type="text"
         name="name"
@@ -52,12 +52,13 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
         className="input-field"
         required
       />
-      
+
+      <label className="input-label required-field">Phone Number <span className="required-asterisk">*</span></label>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
         <select 
           name="countryCode" 
           value='+45' // Hardcoded value
-          className="input-field" 
+          className="input-field country-code-select" 
           style={{ marginRight: '8px' }}>
           <option value="+45">🇩🇰 +45</option>
           <option value="+46">🇸🇪 +46</option>
@@ -73,12 +74,12 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
           value={userInfo.phone}
           onChange={handleInputChange}
           placeholder="Phone number"
-          className="input-field"
+          className="input-field required-field"
           required
         />
       </div>
       
-      <label className="input-label">Email Address <span className="required-asterisk">*</span></label>
+      <label className="input-label required-field">Email Address <span className="required-asterisk">*</span></label>
       <input
         type="email"
         name="email"
