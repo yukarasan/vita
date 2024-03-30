@@ -37,10 +37,8 @@
 }
 
 .cart-container {
-  background: #ffffff;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keeping the shadow soft */
-  border-radius: 8px;
+  background: #f0f8f0;
+  padding: 0px;
   flex-grow: 1;
   max-width: calc(70% - 20px);
 }
