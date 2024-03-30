@@ -22,8 +22,18 @@
   justify-self: start;
 }
 
-.quantity-selector {
-  justify-self: end; /* Align quantity selector to the right */
+.quantity-selector button {
+  background-color: #4CAF50;
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px; 
+  cursor: pointer; 
+  transition: background-color 0.3s;
+}
+
+.quantity-selector button:hover {
+  background-color: #43A047;
 }
 
 .cart-item-total {
