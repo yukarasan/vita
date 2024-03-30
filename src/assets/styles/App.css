@@ -48,7 +48,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 20px;
-  background: #F8F8F8; /* Light gray background for slight contrast */
+  background: #ffffff;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Matching cart-container shadow */
   border-radius: 8px;
