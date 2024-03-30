@@ -8,7 +8,6 @@ import Cart from './data/Cart';
 import Checkout from './components/checkout/Checkout';
 import { UserInfo, Address } from './lib/types';
 
-
 interface HomeProps {
   cart: CartItemType[];
   setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>;
@@ -31,9 +30,6 @@ const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   
     loadInitialCart();
   }, [cart, isFirstLoad, setCart]);
-  
-  
-  
 
   const handleNavigateToCheckout = () => {
     navigate('/checkout');
