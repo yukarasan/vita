@@ -110,7 +110,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
 
       <div className="address-container">
         <h2>Delivery Address</h2>
-        <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
         <input
           type="tel"
           name="postalCode"
@@ -124,7 +124,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
         />
         {!zipCodeValidation.valid && <p className="validation-message">{zipCodeValidation.message}</p>}
         
-        <label className="input-label">City <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="city"
@@ -135,7 +135,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
           required
         />
         
-        <label className="input-label">Address line 1 <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="addressline1"
@@ -170,7 +170,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
       <div className="address-container billing-address">
         <h2>Billing Address</h2>
 
-        <label className="input-label">Postal Code <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">Postal Code <span className="required-asterisk">*</span></label>
         <input
           type="tel"
           name="postalCode"
@@ -184,7 +184,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
         />
         {!zipCodeValidationBilling.valid && <p className="billing-validation-message">{zipCodeValidationBilling.message}</p>}
 
-        <label className="input-label">City <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="city"
@@ -194,7 +194,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
           required
         />
 
-        <label className="input-label">Address line 1 <span className="required-asterisk">*</span></label>
+        <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
         <input
           type="text"
           name="addressline1"
