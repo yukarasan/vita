@@ -95,14 +95,17 @@ const Checkout: React.FC<CheckoutProps> = ({
             billingAddress={billingAddress} 
             setBillingAddress={setBillingAddress} 
           />
-          <label>
-            <input type="checkbox" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />
-            Accept Terms & Conditions
-          </label>
-          <label>
-            <input type="checkbox" checked={receiveMarketing} onChange={(e) => setReceiveMarketing(e.target.checked)} />
-            Receive marketing emails
-          </label>
+
+          <div className="checkbox-container">
+            <input type="checkbox" id="terms" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} className="input-checkbox" />
+            <label htmlFor="terms" className="checkbox-label">Accept Terms & Conditions</label>
+          </div>
+
+          <div className="checkbox-container">
+            <input type="checkbox" id="marketing" checked={receiveMarketing} onChange={(e) => setReceiveMarketing(e.target.checked)} className="input-checkbox" />
+            <label htmlFor="marketing" className="checkbox-label">Receive marketing emails</label>
+          </div>
+
           <textarea placeholder="Order comment (optional)" value={orderComment} onChange={(e) => setOrderComment(e.target.value)} />
           <button type="submit" className="submit-order-btn" disabled={loading}>
             {loading ? "Submitting..." : "Submit Order"}

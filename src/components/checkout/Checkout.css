@@ -80,3 +80,57 @@ input:focus {
   font-weight: bold;
   font-size: 30px;
 }
+
+/* Style for the checkboxes that matches the theme */
+.input-checkbox {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Style for the checkbox labels that matches the theme */
+.checkbox-label {
+  color: #335e35; 
+  font-family: 'Roboto Slab', sans-serif; 
+  font-size: 16px; 
+  display: inline-block; 
+  margin-bottom: 10px; 
+  cursor: pointer; 
+}
+
+.checkbox-container {
+  margin-bottom: 20px; 
+  display: flex;
+  align-items: center; /* Aligns the checkbox and label vertically */
+}
+
+/* Add an empty box before the checkbox is checked */
+.checkbox-label::before {
+  content: '';
+  display: inline-block;
+  width: 16px; 
+  height: 16px;
+  border: 2px solid #ccc; 
+  border-radius: 4px; 
+  background-color: white; 
+  margin-right: 8px; 
+  vertical-align: middle; 
+  transition: background-color 0.2s, border-color 0.2s; /* Smooth transition for color changes */
+}
+
+/* Adjust the appearance when the checkbox is checked */
+.input-checkbox:checked + .checkbox-label::before {
+  content: '✔';
+  color: white;
+  background-color: #4CAF50; 
+  border-color: #4CAF50;
+  text-align: center;
+  line-height: 14px; 
+  font-weight: bold;
+}
+
+/* Remove default appearance of the standard checkbox */
+.input-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
