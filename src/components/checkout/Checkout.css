@@ -47,11 +47,12 @@ input:focus {
 
 .checkout-container {
   max-width: 800px;
-  width: 800px; /* NOTE: Adjust this */
+  width: 100vw;
   margin: auto;
   padding: 20px;
   border-radius: 8px;
   background-color: #f0f8f0;
+  box-sizing: border-box; 
 }
 
 .back-button {
