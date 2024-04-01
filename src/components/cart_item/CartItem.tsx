@@ -69,13 +69,13 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           setImageUrl(productImageUrl); 
         };
         img.onerror = () => {
-          setImageUrl("src/assets/images/not_found.png"); 
+          setImageUrl("dist/images/not_found.png"); 
         };
         img.src = productImageUrl;
   
       } catch (error) {
         console.error("Error fetching data:", error);
-        setImageUrl("src/assets/images/not_found.png");
+        setImageUrl("dist/images/not_found.png");
       }
     };
   
