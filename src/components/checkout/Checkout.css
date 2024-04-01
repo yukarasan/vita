@@ -57,7 +57,7 @@ input:focus {
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 18px;
+  border-radius: 28px;
   font-size: 16px;
   font-family: 'Roboto Slab', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -76,3 +76,7 @@ input:focus {
   box-shadow: 0 0 0 2px #f0f8f0;
 }
 
+.bold-arrow {
+  font-weight: bold;
+  font-size: 30px;
+}
