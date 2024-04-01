@@ -115,8 +115,8 @@
 
 /* Add styles for the image */
 .cart-item img {
-  max-width: 100%; /* Ensure the image fits within the container */
-  height: auto; /* Maintain aspect ratio */
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: cover;
 }
 
 .upsell-product {
