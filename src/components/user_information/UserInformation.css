@@ -1,78 +1,83 @@
 .email-error {
-    color: #ff0000;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-
-  .input-label {
-    display: block;
-    margin-bottom: 5px;
-    margin-left: 15px;
-    color: #333;
-    font-size: 16px;
-    text-align: left;
-  }
-  
-  
-  .input-label .required-asterisk {
-    color: red;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 8px 0;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    font-size: 13px;
-    color: #333;
-  }
-  
-  .input-field:focus {
-    outline: none;
-    border-bottom: 2px solid #555;
-  }
-  
-  .input-field::placeholder {
-    color: #aaa;
-    font-size: 13px;
-  }
-  
-  .required-input {
-    border-bottom: 2px solid red;
-  }
-
-  .user-information-h2 {
-    text-align: left;
-    margin-left: 15px; 
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px; 
-    font-weight: 200; 
-  }
-  
- 
-.terms-and-conditions {
-  margin-top: 10px; 
+  color: #ff0000; /* Error color */
+  font-size: 14px; /* Consistent error font size */
+  margin-top: 5px; /* Spacing after input fields */
 }
 
-.terms-and-conditions label {
-  font-size: 14px;
-  color: #333;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #335e35; /* Theme color for labels */
+  font-size: 16px; /* Consistent font size for clarity */
+  text-align: left; /* Align text to the left */
 }
 
+.input-label .required-asterisk {
+  color: red; /* Red color for indicating required fields */
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px; /* Consistent padding */
+  border: 1px solid #eaeaea; /* Light border for inputs */
+  border-radius: 4px; /* Consistent border-radius */
+  font-size: 16px; /* Readable font size */
+  color: #333; /* Consistent text color */
+  font-family: 'Lato', sans-serif; /* Consistent font for readability */
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #4CAF50; /* Theme green for focus state */
+  border-width: 2px; /* Thicker border on focus */
+}
+
+.input-field::placeholder {
+  color: #aaa; /* Placeholder color */
+  font-size: 13px; /* Placeholder font size */
+}
+
+.required-input {
+  border-color: #ff0000; /* Red for error indication */
+}
+
+.user-information-h2 {
+  text-align: left;
+  margin-left: 0; /* Align with other content */
+  font-family: 'Roboto Slab', sans-serif; /* Theme font-family */
+  font-size: 1.25rem; /* Consistent heading font size */
+  font-weight: 700; /* Bold font weight for headings */
+  color: #335e35; /* Theme green for headings */
+}
+
+.terms-and-conditions,
 .marketing-checkbox {
-  margin-top: 10px; 
+  margin-top: 10px; /* Consistent spacing */
 }
 
+.terms-and-conditions label,
 .marketing-checkbox label {
-  font-size: 14px;
-  color: #333;
+  font-size: 14px; /* Consistent font size */
+  color: #333; /* Text color */
 }
 
 .country-code-select {
-  width: auto; 
-  min-width: 100px; /* You can adjust this value based on your layout */
-  margin-right: 8px; /* Keeps space between the select box and the phone number input */
+  width: auto;
+  min-width: 100px; /* Adjust based on layout */
+  margin-right: 8px; /* Spacing between elements */
+  border: 1px solid #eaeaea; /* Light border for inputs and selects */
+  border-radius: 4px; /* Consistent border-radius */
+  font-size: 16px; /* Readable font size */
+  font-family: 'Lato', sans-serif; /* Consistent font for readability */
+}
+
+/* Custom select arrow */
+.country-code-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23335e35" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
 }
