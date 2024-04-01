@@ -107,7 +107,7 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
       
       <label className="input-label">Vat Number</label>
       <input
-        type="text"
+        type="tel"
         name="vatNumber"
         value={userInfo.vatNumber}
         onChange={handleInputChange}
