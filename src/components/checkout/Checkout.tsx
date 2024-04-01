@@ -107,6 +107,7 @@ const Checkout: React.FC<CheckoutProps> = ({
           </div>
 
           <textarea placeholder="Order comment (optional)" value={orderComment} onChange={(e) => setOrderComment(e.target.value)} />
+          
           <button type="submit" className="submit-order-btn" disabled={loading}>
             {loading ? "Submitting..." : "Submit Order"}
           </button>
