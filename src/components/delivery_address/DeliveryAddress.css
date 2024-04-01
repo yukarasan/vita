@@ -18,7 +18,7 @@
 }
 
 /* Input Styles */
-.address-section input, .input-field {
+.address-section input, .input-field, .required-input {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -30,7 +30,7 @@
 
 .address-section input:focus, .input-field:focus, .required-input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #4CAF50 !important;
 }
 
 .address-section input.invalid, .required-input {

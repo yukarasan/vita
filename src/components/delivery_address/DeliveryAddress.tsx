@@ -128,7 +128,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
                 <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
                 <input
                   type="text"
-                  name="city"
+                  name="city1"
                   value={deliveryAddress.city}
                   onChange={handleAddressChange()}
                   placeholder="City"
@@ -190,10 +190,11 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
               <label className="input-label required-field">City <span className="required-asterisk">*</span></label>
               <input
                 type="text"
-                name="city"
+                name="city2"
                 value={billingAddress.city}
                 onChange={handleAddressChange(true)}
                 placeholder="City"
+                className="input-field"
                 required
               />
 
