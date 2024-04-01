@@ -39,7 +39,7 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
   };
 
   return (
-    <div>
+    <div className="address-section user-information-section">
       <h2 className="user-information-h2">Your Information</h2>
       
       <label className="input-label required-field">Full Name <span className="required-asterisk">*</span></label>
@@ -52,46 +52,46 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
         className="input-field"
         required
       />
+  
+      <div className="input-group">
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+          <select 
+            name="countryCode" 
+            value='+45' // Harcoded for now
+            className="country-code-select input-field"
+          >
+            <option value="+45">🇩🇰 +45</option>
+            <option value="+46">🇸🇪 +46</option>
+            <option value="+47">🇳🇴 +47</option>
+            <option value="+90">🇹🇷 +90</option>
+            <option value="+92">🇵🇰 +92</option>
+            <option value="+93">🇦🇫 +93</option>
+          </select>
 
-      <label className="input-label required-field">Phone Number <span className="required-asterisk">*</span></label>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-        <select 
-          name="countryCode" 
-          value='+45' // Hardcoded value
-          className="input-field country-code-select" 
-          style={{ marginRight: '8px' }}>
-          <option value="+45">🇩🇰 +45</option>
-          <option value="+46">🇸🇪 +46</option>
-          <option value="+47">🇳🇴 +47</option>
-          <option value="+47">🇹🇷 +90</option>
-          <option value="+47">🇵🇰 +92</option>
-          <option value="+47">🇦🇫 +93</option>
-        </select>
-
-        <input
-          type="tel"
-          name="phone"
-          value={userInfo.phone}
-          onChange={handleInputChange}
-          placeholder="Phone number"
-          className="input-field required-field"
-          required
-        />
+          <input
+            type="tel"
+            name="phone"
+            value={userInfo.phone}
+            onChange={handleInputChange}
+            placeholder="Phone number"
+            className="input-field required-field"
+            required
+          />
+        </div>
       </div>
-      
+  
       <label className="input-label required-field">Email Address <span className="required-asterisk">*</span></label>
       <input
         type="email"
         name="email"
         value={userInfo.email}
         onChange={handleInputChange}
-        placeholder="E-mail e.g., vita@vita.com"
+        placeholder="Email e.g., vita@vita.com"
         className={`input-field ${!emailValid ? 'invalid' : ''}`}
         required
       />
-      {/* Optionally show an error message if the email is invalid */}
-      {!emailValid && <p className="error-message">Invalid email format</p>}
-      
+      {!emailValid && <p className="email-error">Invalid email format</p>}
+  
       <label className="input-label">Company Name</label>
       <input
         type="text"
