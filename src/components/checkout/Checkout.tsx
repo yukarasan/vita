@@ -82,7 +82,9 @@ const Checkout: React.FC<CheckoutProps> = ({
   return (
     <>
       <div className="checkout-container">
-        <button onClick={() => navigate(-1)} className="back-button">Back</button>
+        <button onClick={() => navigate(-1)} className="back-button">
+          &#x2190;
+        </button>
 
         <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
           <DeliveryAddress 
