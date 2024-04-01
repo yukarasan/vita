@@ -11,12 +11,13 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>();
   const [itemTotal, setItemTotal] = useState<number>(0);
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string>("");
   const [triggerPulseId, setTriggerPulseId] = useState<string | null>(null);
 
-  const rebateAmount = cartItem.quantity >= cartItem.rebateQuantity
-    ? cartItem.price * cartItem.quantity * (cartItem.rebatePercent / 100)
-    : 0;
+  const rebateAmount =
+    cartItem.quantity >= cartItem.rebateQuantity
+      ? cartItem.price * cartItem.quantity * (cartItem.rebatePercent / 100)
+      : 0;
 
   useEffect(() => {
     const calculatedTotal = cartItem.price * cartItem.quantity - rebateAmount;
@@ -30,14 +31,16 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   const handleGiftWrapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === cartItem.id ? { ...item, giftWrap: event.target.checked } : item
+        item.id === cartItem.id
+          ? { ...item, giftWrap: event.target.checked }
+          : item
       )
     );
   };
 
   const handleItemIncrease = (id: string) => {
     setTriggerPulseId(id); // Set the id of the item being increased to trigger the pulse effect
-  
+
     // Reset the pulse trigger after the animation
     setTimeout(() => {
       setTriggerPulseId(null); // Clear the trigger to reset the pulse effect
@@ -47,16 +50,22 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json");
+        const response = await fetch(
+          "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
+        );
         const data = await response.json();
-        const item = data.find((item: CatalogItemType) => item.id === cartItem.upsellProductId);
+        const item = data.find(
+          (item: CatalogItemType) => item.id === cartItem.upsellProductId
+        );
         setUpsellProduct(item);
-        setImageUrl(cartItem.upsellProductId ? item?.imageUrl || '' : cartItem.imageUrl);
+        setImageUrl(
+          cartItem.upsellProductId ? item?.imageUrl || "" : cartItem.imageUrl
+        );
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, [cartItem.upsellProductId, cartItem.imageUrl]);
 
@@ -71,25 +80,85 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
       );
     } else if (cartItem.rebateQuantity !== 0 && cartItem.rebatePercent > 0) {
       // Apply "animate-pulse" class only if this item's ID matches the triggerPulseId
-      const pulseClass = cartItem.id === triggerPulseId ? 'animate-pulse' : '';
+      const pulseClass = cartItem.id === triggerPulseId ? "animate-pulse" : "";
       return (
-        <p className={`${pulseClass}`} key={`discount-${cartItem.quantity}-${Date.now()}`}>
+        <p
+          className={`${pulseClass}`}
+          key={`discount-${cartItem.quantity}-${Date.now()}`}
+        >
           You saved {cartItem.rebatePercent}% on this item!
         </p>
       );
+    } else {
+      return "";
     }
-  };  
+  };
 
   return (
     <li className="cart-item">
       <div className="cart-item-top">
-        <span className="cart-item-name">{cartItem.name}</span>
-        <span className="cart-item-price">{cartItem.price} kr</span>
-        <QuantitySelector setCart={setCart} cartItem={cartItem} onIncrease={handleItemIncrease} />
-        <span className="cart-item-total">{formattedTotal} kr</span>
-          {handleCalcRebate()}
-        <p>{upsellProduct && upsellProduct.name}</p>
-        <img src={imageUrl} alt="Upsell Product Image" width="100" height="100" className="cart-item-image" />
+        <div className="cart-item-left-side-container">
+          <div className="cart-item-name-image-container">
+            {/* <span className="cart-item-name">{cartItem.name}</span> */}
+            <img
+              src={imageUrl}
+              alt="Upsell Product Image"
+              width="100"
+              height="100"
+              className="cart-item-image"
+            />
+          </div>
+          <div className="cart-item-title-giftwrap-container">
+            <span className="cart-item-name">{cartItem.name}</span>
+            <div className="gift-wrap-container">
+              {/* <label className="gift-wrap-checkbox">
+                🎁 Gift wrap this order?
+                <input
+                  type="checkbox"
+                  checked={cartItem.giftWrap}
+                  onChange={handleGiftWrapChange}
+                />
+              </label> */}
+              <span className="cart-item-unit-price">{cartItem.price} kr</span>
+            </div>
+          </div>
+        </div>
+
+        <QuantitySelector
+          setCart={setCart}
+          cartItem={cartItem}
+          onIncrease={handleItemIncrease}
+        />
+        <div className="cart-item-price">
+          {cartItem.rebateQuantity !== 0 &&
+            cartItem.rebatePercent > 0 &&
+            cartItem.quantity >= cartItem.rebateQuantity && (
+              <span className="cart-item-original-price">
+                {cartItem.price * cartItem.quantity}.-
+              </span>
+            )}
+
+          <span className="cart-item-final-price">{formattedTotal}.-</span>
+
+          {cartItem.rebateQuantity !== 0 &&
+            cartItem.rebatePercent > 0 &&
+            cartItem.quantity >= cartItem.rebateQuantity && (
+              <span className="cart-item-discount-price">
+                SAVED {rebateAmount.toFixed(2)}
+              </span>
+            )}
+        </div>
+        {handleCalcRebate()}
+        <div className="cart-item-upsell">
+          <p>{upsellProduct && upsellProduct.name}</p>
+        </div>
+        {/* <img
+          src={imageUrl}
+          alt="Upsell Product Image"
+          width="100"
+          height="100"
+          className="cart-item-image"
+        /> */}
 
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
           <svg
@@ -118,7 +187,6 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           />
         </label>
       </div>
-      <span className="rebate-amount">Total Saved: {rebateAmount.toFixed(2)} kr</span>
     </li>
   );
 };

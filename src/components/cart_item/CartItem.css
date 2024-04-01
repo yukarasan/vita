@@ -1,7 +1,5 @@
 /* Update the cart-item CSS to include styling for the image */
 .cart-item {
-  display: grid;
-  grid-template-columns: auto 1fr auto 40px; /* Adjusted grid to allocate space for the delete button */
   gap: 0.9rem;
   padding: 0.5rem; /* Added padding */
   border-bottom: 1px solid #e0e0e0; /* Separator */
@@ -11,15 +9,51 @@
   display: contents; /* Allows children to lay out on the grid defined by the parent */
 }
 
+.cart-item-upsell {
+  grid-column: 5;
+}
+
+.cart-item-left-side-container {
+  display: flex; /* Align image and content horizontally */
+  gap: 1rem; /* Added space between image and content */
+}
+
+.cart-item-name-image-container {
+  display: flex; /* Align image and name horizontally */
+  flex-direction: column; /* Stack image and name vertically */
+}
+
 .cart-item-name {
   font-size: 1em;
+  justify-self: start;
+  margin-bottom: 1rem; /* Added space between name and price */
+}
+
+.cart-item-unit-price {
+  font-size: 0.9em; /* Adjusted font size */
+  color: #666;
   justify-self: start;
 }
 
 .cart-item-price {
-  font-size: 0.9em; /* Adjusted font size */
-  color: #666; /* Example color */
-  justify-self: start;
+  display: flex; /* Align price and quantity horizontally */
+  flex-direction: column;
+}
+
+.cart-item-original-price {
+  text-decoration: line-through; /* Strikethrough original price */
+  color: #999;
+}
+
+.cart-item-final-price {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.cart-item-discount-price {
+  background-color: yellow;
+  font-weight: bold;
+  padding: 0.1rem;
 }
 
 .quantity-selector button {
@@ -39,12 +73,6 @@
 .cart-item-total {
   justify-self: start; /* Align total amount to the left */
   margin-right: auto; /* Pushes total amount to the left and delete button to the right */
-}
-
-.gift-wrap-container {
-  grid-column: 1 / -1;
-  display: block; /* Adjusted display property */
-  margin-top: 0.5rem;
 }
 
 .cart-item-remove-icon,
@@ -89,6 +117,11 @@
 .cart-item img {
   max-width: 100%; /* Ensure the image fits within the container */
   height: auto; /* Maintain aspect ratio */
+}
+
+.upsell-product {
+  display: grid;
+  gap: 1rem; /* Add space between products */
 }
 
 /* Keep the keyframes definition as is */
