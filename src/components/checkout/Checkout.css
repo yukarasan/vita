@@ -6,65 +6,58 @@
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 20px; /* This will give it rounded corners */
+    border-radius: 20px; 
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    margin-top: 15px; /* Adjust as needed for spacing */
-    width: 100%; /* Make the button expand to the container width */
-    box-sizing: border-box; /* Make sure padding doesn't affect the total width */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 15px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    transition: background-color 0.3s ease; 
 }
   
 .submit-order-btn:hover {
-    background-color: #333; /* Slightly lighter black on hover */
+    background-color: #333; 
 }
 
-/* General styling for required fields */
 input:required {
   border: 1px solid #ccc;
   background-color: #f8f8f8;
 }
 
-/* Highlighting when the user interacts with the field */
 input:required:focus {
   border-color: #4A90E2;
   background-color: white;
 }
 
-/* Additional styles for when the user hovers over the submit button */
 .submit-order-btn:hover {
-  background-color: #555; /* Darken the button a bit when hovering */
+  background-color: #555; 
   color: white;
 }
 
-/* Highlighting when the user interacts with the field */
 input:focus {
   border-color: #4A90E2;
   background-color: white;
 }
 
-/* Styling for when the field is invalid (e.g., after a submit attempt) */
 .form-attempted-submit input:invalid {
   border-color: red;
   background-color: #ffe8e8;
 }
 
-/* Add relative positioning to the checkout-container */
 .checkout-container {
   position: relative; /* This is important for the absolute positioning of the child to work correctly */
-  /* The rest of your styling for checkout-container */
 }
 
 .back-button {
-  position: fixed; /* Fixed positioning to stay in place while scrolling */
-  top: 20px; /* 20 pixels from the top */
-  left: 20px; /* 20 pixels from the left */
+  position: fixed; 
+  top: 20px; 
+  left: 20px;
   padding: 10px 15px;
-  background-color: #4CAF50; /* Theme green color */
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 28px;
+  border-radius: 18px;
   font-size: 16px;
   font-family: 'Roboto Slab', sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -73,7 +66,7 @@ input:focus {
 }
 
 .back-button:hover {
-  background-color: #43A047; /* Darker green on hover */
+  background-color: #43A047;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
