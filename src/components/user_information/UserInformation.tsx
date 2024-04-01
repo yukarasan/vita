@@ -41,8 +41,6 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
     }
   };
   
-  
-
   return (
     <div className="address-section user-information-section">
       <h2 className="user-information-h2">Your Information</h2>

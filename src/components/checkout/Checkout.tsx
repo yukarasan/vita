@@ -80,34 +80,36 @@ const Checkout: React.FC<CheckoutProps> = ({
   }
 
   return (
+    <>
+      <div className="checkout-container">
+        <button onClick={() => navigate(-1)} className="back-button">Back</button>
 
-    <div className="checkout-container">
-      <button onClick={() => navigate(-1)} className="back-button">Back to Cart</button>
-
-      <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
-        <DeliveryAddress 
-          userInfo={userInfo} 
-          setUserInfo={setUserInfo} 
-          deliveryAddress={deliveryAddress} 
-          setDeliveryAddress={setDeliveryAddress} 
-          billingAddress={billingAddress} 
-          setBillingAddress={setBillingAddress} 
-        />
-        <label>
-          <input type="checkbox" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />
-          Accept Terms & Conditions
-        </label>
-        <label>
-          <input type="checkbox" checked={receiveMarketing} onChange={(e) => setReceiveMarketing(e.target.checked)} />
-          Receive marketing emails
-        </label>
-        <textarea placeholder="Order comment (optional)" value={orderComment} onChange={(e) => setOrderComment(e.target.value)} />
-        <button type="submit" className="submit-order-btn" disabled={loading}>
-          {loading ? "Submitting..." : "Submit Order"}
-        </button>
-        {error && <p className="form-error-message">{error}</p>}
-      </form>
-    </div>
+        <form onSubmit={handleSubmitOrder} ref={formRef} noValidate className={attemptedSubmit ? "form-attempted-submit" : ""}>
+          <DeliveryAddress 
+            userInfo={userInfo} 
+            setUserInfo={setUserInfo} 
+            deliveryAddress={deliveryAddress} 
+            setDeliveryAddress={setDeliveryAddress} 
+            billingAddress={billingAddress} 
+            setBillingAddress={setBillingAddress} 
+          />
+          <label>
+            <input type="checkbox" checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />
+            Accept Terms & Conditions
+          </label>
+          <label>
+            <input type="checkbox" checked={receiveMarketing} onChange={(e) => setReceiveMarketing(e.target.checked)} />
+            Receive marketing emails
+          </label>
+          <textarea placeholder="Order comment (optional)" value={orderComment} onChange={(e) => setOrderComment(e.target.value)} />
+          <button type="submit" className="submit-order-btn" disabled={loading}>
+            {loading ? "Submitting..." : "Submit Order"}
+          </button>
+          {error && <p className="form-error-message">{error}</p>}
+        </form>
+      </div>
+    </>
+    
   );
 };
 
