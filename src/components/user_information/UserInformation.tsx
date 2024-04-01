@@ -20,23 +20,28 @@ export const UserInformation: React.FC<UserInformationProps> = ({ userInfo, setU
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const updatedUserInfo = { ...userInfo, [name]: value };
-
-    if (name === 'email') {
-      const isValid = validateEmail(value);
-      setEmailValid(isValid); // Update the email validity state
-      // Allow the state to update even if the email format is incorrect
-    }
-
+    let updatedValue = value;
+  
     if (name === 'phone' || name === 'vatNumber') {
-      if (!/^\d*$/.test(value) || value.length > 8) {
-        // Prevent the state from updating for these conditions
+      const digitsOnly = value.replace(/\D/g, '');
+  
+      if (digitsOnly.length > 8) {
         return;
       }
+  
+      updatedValue = name === 'phone' ? digitsOnly.replace(/(\d{2})(?=\d)/g, '$1 ') : digitsOnly;
     }
-
+  
+    const updatedUserInfo = { ...userInfo, [name]: updatedValue };
     setUserInfo(updatedUserInfo);
+  
+    if (name === 'email') {
+      const isValid = validateEmail(value);
+      setEmailValid(isValid);
+    }
   };
+  
+  
 
   return (
     <div className="address-section user-information-section">
