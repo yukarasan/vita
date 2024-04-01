@@ -50,25 +50,38 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json"
-        );
-        const data = await response.json();
-        const item = data.find(
-          (item: CatalogItemType) => item.id === cartItem.upsellProductId
-        );
-        setUpsellProduct(item);
-        setImageUrl(
-          cartItem.upsellProductId ? item?.imageUrl || "" : cartItem.imageUrl
-        );
+        const response = await fetch("https://raw.githubusercontent.com/larsthorup/checkout-data/main/product-v2.json");
+        const data: CatalogItemType[] = await response.json();
+  
+        const productImageUrl = cartItem.imageUrl; 
+  
+        // Check if there's an upsell product
+        if (cartItem.upsellProductId) {
+          const upsellProduct = data.find((item: CatalogItemType) => item.id === cartItem.upsellProductId);
+          if (upsellProduct) {
+            setUpsellProduct(upsellProduct);
+          }
+        }
+  
+        // Image load check
+        const img = new Image();
+        img.onload = () => {
+          setImageUrl(productImageUrl); 
+        };
+        img.onerror = () => {
+          setImageUrl("src/assets/images/Screenshot 2024-04-01 at 19.39.02.png"); 
+        };
+        img.src = productImageUrl;
+  
       } catch (error) {
         console.error("Error fetching data:", error);
+        setImageUrl("src/assets/images/Screenshot 2024-04-01 at 19.39.02.png");
       }
     };
-
+  
     fetchData();
-  }, [cartItem.upsellProductId, cartItem.imageUrl]);
-
+  }, [cartItem.imageUrl, cartItem.upsellProductId]);
+  
   const formattedTotal = itemTotal.toFixed(2);
 
   const handleCalcRebate = () => {
@@ -111,14 +124,6 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
           <div className="cart-item-title-giftwrap-container">
             <span className="cart-item-name">{cartItem.name}</span>
             <div className="gift-wrap-container">
-              {/* <label className="gift-wrap-checkbox">
-                🎁 Gift wrap this order?
-                <input
-                  type="checkbox"
-                  checked={cartItem.giftWrap}
-                  onChange={handleGiftWrapChange}
-                />
-              </label> */}
               <span className="cart-item-unit-price">{cartItem.price} kr</span>
             </div>
           </div>
@@ -152,14 +157,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         <div className="cart-item-upsell">
           <p>{upsellProduct && upsellProduct.name}</p>
         </div>
-        {/* <img
-          src={imageUrl}
-          alt="Upsell Product Image"
-          width="100"
-          height="100"
-          className="cart-item-image"
-        /> */}
-
+  
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
