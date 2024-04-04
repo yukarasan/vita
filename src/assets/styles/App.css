@@ -85,11 +85,31 @@
   margin-top: 15px;
   width: 50%;
   box-sizing: border-box;
-  transition: background-color 0.3s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  /* Adding a box shadow to mimic the border effect from the Tailwind button */
+  box-shadow: 0 4px #388E3C;
+  /* Using filter for brightness */
+  filter: brightness(100%);
+  transform: translateY(0px);
 }
 
 .proceed-checkout-btn:hover {
-  background-color: #43A047; /* Slightly darker green on hover for feedback */
+  /* Slightly darker green on hover for feedback, also adjust brightness and shadow for hover effect */
+  background-color: #43A047;
+  filter: brightness(110%);
+  /* Lifting the button slightly on hover */
+  transform: translateY(-1px);
+  /* Increasing the shadow to mimic the border effect */
+  box-shadow: 0 6px #388E3C;
+}
+
+.proceed-checkout-btn:active {
+  /* Further darkening and adjusting the button when active/pressed */
+  filter: brightness(90%);
+  /* Pressing the button down more */
+  transform: translateY(2px);
+  /* Reducing the shadow to mimic the border effect when the button is pressed */
+  box-shadow: 0 2px #388E3C;
 }
 
 /* Back to Top Button Styling with Upward Arrow */
