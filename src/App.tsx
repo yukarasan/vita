@@ -32,8 +32,11 @@ const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
   }, [cart, isFirstLoad, setCart]);
 
   const handleNavigateToCheckout = () => {
-    navigate('/checkout');
+    setTimeout(() => {
+      navigate('/checkout');
+    }, 200);
   };
+  
 
   return (
     <>
