@@ -198,7 +198,9 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart, onUpgrade }) => 
             type="checkbox"
             checked={cartItem.giftWrap}
             onChange={handleGiftWrapChange}
+            id="giftWrapCheckbox"
           />
+          <span></span>
         </label>
       </div>
     </li>
