@@ -67,10 +67,11 @@ function AppHeader() {
   }
 
   return (
-    <header>
+    <header className="header-container">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABJ0lEQVR4nO2TO04CURSGPxIJoZIQS2lNJG4BWixcgLbKAgwswVgaYwAtsdOOWEqsJDaEUlfACvARQwFjbvIXV15zZiY0xj85xTn3f9zHDPxVpIAG8A0EIeU4V1EDDgzGwUw5jRlPEp0auDVxu1bzIjAFPoBNAz8nrgvZswTciNy07gi4lqZl2c2nTrAbIWBHmi8gv4pY104eiY6utO5N5tCL8dUEIfXsBwzXEDD0A241dFeUFHV5tf3hUYK7X/YWh/5wC5jot8968xe9j7XPymMiz18YKLnizQKVtd9X3587F3CuxYsEAZfqzxYFlLX46s16M59bWP8mj9KigA1gJEKB6NiW9h1ILyM9iHQcI6AqbcdCSlInqwIywD0wjmE8Bu7k8Q/M+AGxbq6T68+dUAAAAABJRU5ErkJggg==" className="cart-image"></img>
       <h1>Your Cart</h1>
     </header>
-  );
+  );  
 }
 
 function App() {
