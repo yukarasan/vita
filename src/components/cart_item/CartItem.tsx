@@ -6,10 +6,11 @@ import "./CartItem.css";
 interface CartItemProps {
   cartItem: CartItemType;
   setCart: React.Dispatch<React.SetStateAction<CartItemType[]>>;
+  onUpgrade: (product: CatalogItemType) => void; 
 }
 
-const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
-  const [upsellProduct, setUpsellProduct] = useState<CatalogItemType>();
+const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart, onUpgrade }) => {
+  const [upsellProduct, setUpsellProduct] = useState<CatalogItemType | null>(null);
   const [itemTotal, setItemTotal] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [triggerPulseId, setTriggerPulseId] = useState<string | null>(null);
@@ -55,7 +56,7 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   
         const productImageUrl = cartItem.imageUrl; 
   
-        // Check if there's an upsell product
+       
         if (cartItem.upsellProductId) {
           const upsellProduct = data.find((item: CatalogItemType) => item.id === cartItem.upsellProductId);
           if (upsellProduct) {
@@ -83,6 +84,16 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
   }, [cartItem.imageUrl, cartItem.upsellProductId]);
   
   const formattedTotal = itemTotal.toFixed(2);
+
+  const handleUpgrade = () => {
+    if (upsellProduct) {
+      onUpgrade(upsellProduct); 
+      setCart(prev => prev.filter(item => item.id !== cartItem.id)); 
+      
+    }
+    
+    
+  };
 
   const handleCalcRebate = () => {
     if (cartItem.quantity < cartItem.rebateQuantity) {
@@ -155,7 +166,12 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem, setCart }) => {
         </div>
         {handleCalcRebate()}
         <div className="cart-item-upsell">
-          <p>{upsellProduct && upsellProduct.name}</p>
+          {upsellProduct && (
+            <div>
+              <p>{upsellProduct.name}</p>
+              <button className="Upgrade-product-btn" onClick={handleUpgrade}>Upgrade</button>
+            </div>
+          )}
         </div>
   
         <button className="cart-item-button" onClick={handleRemoveCartItem}>
