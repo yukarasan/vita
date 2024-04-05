@@ -144,3 +144,44 @@
   content: '▲';
   margin-right: 8px; /* Space between the arrow and text */
 }
+
+
+/* Button styling with theme color */
+.Upgrade-product-btn {
+  background-color: #4CAF50; /* Theme green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  /* Adding a box shadow to mimic the border effect from the Tailwind button */
+  box-shadow: 0 4px #388E3C;
+  /* Using filter for brightness */
+  filter: brightness(100%);
+  transform: translateY(0px);
+}
+
+.Upgrade-product-btn:hover {
+  /* Slightly darker green on hover for feedback, also adjust brightness and shadow for hover effect */
+  background-color: #43A047;
+  filter: brightness(110%);
+  /* Lifting the button slightly on hover */
+  transform: translateY(-1px);
+  /* Increasing the shadow to mimic the border effect */
+  box-shadow: 0 6px #388E3C;
+}
+
+.proceed-checkout-btn:active {
+  /* Further darkening and adjusting the button when active/pressed */
+  filter: brightness(90%);
+  /* Pressing the button down more */
+  transform: translateY(2px);
+  /* Reducing the shadow to mimic the border effect when the button is pressed */
+  box-shadow: 0 2px #388E3C;
+}
