@@ -114,35 +114,44 @@
 
 /* Back to Top Button Styling with Upward Arrow */
 .back-to-top-btn {
-  position: fixed; /* Fixed positioning to stay in place while scrolling */
-  bottom: 20px; /* 20 pixels from the bottom */
-  right: 20px; /* 20 pixels from the right */
-  background-color: #4CAF50; /* Theme green color */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex; /* To center the icon and text */
-  align-items: center; /* Vertically align the content */
-  justify-content: center; /* Horizontally align the content */
+  box-shadow: 0 4px #388E3C; 
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-to-top-btn:hover {
-  background-color: #43A047; /* Slightly darker green on hover */
-  transform: translateY(-3px); /* Slight lift effect on hover */
+  background-color: #43A047;
+  filter: brightness(110%); 
+  transform: translateY(-1px); 
+  box-shadow: 0 6px #388E3C;
+}
+
+.back-to-top-btn:active {
+  filter: brightness(90%);
+  transform: translateY(2px);
+  box-shadow: 0 2px #388E3C; 
 }
 
 .back-to-top-btn:focus {
-  outline: none; /* Removes the outline to match the styling */
+  outline: none;
+  box-shadow: 0 0 0 2px #f0f8f0; 
 }
 
 .back-to-top-btn::before {
   content: '▲';
-  margin-right: 8px; /* Space between the arrow and text */
+  margin-right: 8px;
 }
 
 
