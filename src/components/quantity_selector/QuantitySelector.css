@@ -1,15 +1,50 @@
 .quantity-selector input[type="text"] {
   width: 2em;
-  border: 1px solid #eaeaea; /* Light border for definition */
-  background-color: #ffffff; /* White background */
+  border: 1px solid #eaeaea;
+  background-color: #ffffff;
   text-align: center;
   outline: none;
   font-size: 1em;
-  margin: 0 5px; /* Space between buttons and input */
-  border-radius: 4px; /* Match the button's border-radius */
-  color: #333; /* Text color for contrast */
+  margin: 0 5px;
+  border-radius: 4px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.1s ease;
 }
 
 .quantity-selector input[type="text"]:focus {
-  border-color: #4CAF50; /* Highlight with theme green when focused */
+  border-color: #4CAF50;
+  box-shadow: 0 4px #388E3C;
+}
+
+.quantity-selector button {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: filter 0.1s ease, box-shadow 0.1s ease, transform 0.1s ease;
+  box-shadow: 0 2px #388E3C;
+  filter: brightness(100%);
+}
+
+.quantity-selector button:hover {
+  filter: brightness(110%);
+  box-shadow: 0 4px #388E3C;
+  transform: translateY(-1px);
+}
+
+.quantity-selector button:active {
+  filter: brightness(90%);
+  box-shadow: 0 1px #388E3C;
+  transform: translateY(1px);
+}
+
+.quantity-selector button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+  box-shadow: none;
+  filter: brightness(100%);
 }
