@@ -175,3 +175,41 @@ textarea:focus {
   border-color: #4CAF50;
   box-shadow: 0 0 0 2px #f0f8f0;
 }
+
+.back-to-home-btn {
+  background-color: #4CAF50; /* Theme green color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  box-shadow: 0 4px #388E3C; 
+  filter: brightness(100%);
+  transform: translateY(0px);
+}
+
+.back-to-home-btn:hover {
+  background-color: #43A047;
+  filter: brightness(110%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px #388E3C;
+}
+
+.back-to-home-btn:active {
+  background-color: #388E3C;
+  filter: brightness(90%);
+  transform: translateY(2px);
+  box-shadow: 0 2px #388E3C;
+}
+
+.back-to-home-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f0f8f0;
+}
