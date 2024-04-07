@@ -1,7 +1,7 @@
 /* Checkout.css */
 
 .submit-order-btn {
-  background-color: black;
+  background-color: #4CAF50; /* Theme green color */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -13,11 +13,29 @@
   width: 100%;
   max-width: 200px;
   box-sizing: border-box;
-  transition: background-color 0.3s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  box-shadow: 0 4px #388E3C; /* Initial shadow for depth, matching the green theme */
+  filter: brightness(100%);
+  transform: translateY(0px);
 }
 
 .submit-order-btn:hover {
-  background-color: #333;
+  background-color: #43A047; /* Slightly darker green on hover for feedback */
+  filter: brightness(110%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px #388E3C; /* Increased shadow to elevate the button visually */
+}
+
+.submit-order-btn:active {
+  background-color: #388E3C; /* Even darker green to mimic button press */
+  filter: brightness(90%);
+  transform: translateY(2px); /* Pushing the button down to simulate click */
+  box-shadow: 0 2px #388E3C; /* Reduced shadow to mimic the button being pressed down */
+}
+
+.submit-order-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #f0f8f0; /* Focus shadow around the button for visual feedback */
 }
 
 input:required {
@@ -28,11 +46,6 @@ input:required {
 input:required:focus {
   border-color: #4A90E2;
   background-color: white;
-}
-
-.submit-order-btn:hover {
-  background-color: #555;
-  color: white;
 }
 
 input:focus {
