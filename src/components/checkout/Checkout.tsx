@@ -25,47 +25,53 @@ const Checkout: React.FC<CheckoutProps> = ({
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
+  const validateFields = () => {
+    if (!userInfo.name) return { valid: false, message: "Please fill out your name." };
+    if (!userInfo.phone) return { valid: false, message: "Please enter your phone number." };
+    if (!userInfo.email) return { valid: false, message: "Please enter your e-mail address." };
+  
+    if (!deliveryAddress.addressline1) return { valid: false, message: 'Please fill out your delivery address.' };
+    if (!deliveryAddress.city) return { valid: false, message: 'Please fill out your city.' };
+    if (!deliveryAddress.postalCode) return { valid: false, message: 'Please fill out your postal code.' };
+  
+    if (!billingAddress.addressline1) return { valid: false, message: 'Please fill out your billing address.' };
+    if (!billingAddress.city) return { valid: false, message: 'Please fill out your billing city.' };
+    if (!billingAddress.postalCode) return { valid: false, message: 'Please fill out your billing postal code.' };
+  
+    if (!termsAccepted) return { valid: false, message: 'You must accept the terms and conditions to proceed.' };
+  
+    return { valid: true };
+  };
+  
   const handleSubmitOrder = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    setAttemptedSubmit(true);
-
-    if (!formRef.current || !formRef.current.checkValidity()) {
-      return;
-    }
-
-    if (!termsAccepted) {
-      setError('You must accept the terms and conditions to proceed.');
-      return;
-    }
-
     setLoading(true);
+    setAttemptedSubmit(true);
+  
+    const validation = validateFields();
+    if (!validation.valid) {
+      setError(validation.message || "An unexpected error occurred");
+      setLoading(false);
+      return;
+    }
+  
     setError("");
-
     try {
       await fetch('https://webhook.site/e907b0ec-d359-4997-80e5-0cae155d7337', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         mode: 'no-cors',
         body: JSON.stringify({
-          cart,
-          userInfo, 
-          deliveryAddress,
-          billingAddress,
-          termsAccepted,
-          receiveMarketing,
-          orderComment,
+          cart, userInfo, deliveryAddress, billingAddress, termsAccepted, receiveMarketing, orderComment,
         }),
       });
-
       setOrderSubmitted(true);
     } catch (error) {
       console.error('Error submitting order:', error);
       setError('An error occurred while submitting the order.');
     }
-
     setLoading(false);
-  };
+  };  
 
   if (orderSubmitted) {
     return (
@@ -120,8 +126,6 @@ const Checkout: React.FC<CheckoutProps> = ({
 };
 
 export default Checkout;
-
-
 
 
 // Production: 
