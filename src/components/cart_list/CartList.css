@@ -27,6 +27,10 @@
       1fr
     ); /* Assume moving Quantity and Total Price closer */
   }
+  .cart-item img {
+    height: 50%; /* Maintain aspect ratio */
+    width: 50px; /* Maintain aspect ratio */
+  }
 }
 
 @media (max-width: 480px) {
