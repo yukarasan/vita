@@ -36,12 +36,26 @@ const Home: React.FC<HomeProps> = ({ cart, setCart }) => {
       navigate('/checkout');
     }, 200);
   };
+
+  const handleUpgrade = (productId: string) => {
+    // Find the product in the cart by ID
+    const updatedCart = cart.map(item => {
+      if (item.id === productId) {
+        // Perform the upgrade logic here, e.g., increase quantity or update properties
+        // For example, increase the quantity by 1
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+    });
+    // Update the cart state with the updated product
+    setCart(updatedCart);
+  };
   
 
   return (
     <>
       <div className="cart-container">
-        <CartList cart={cart} setCart={setCart} />
+      <CartList cart={cart} setCart={setCart} onUpgrade={handleUpgrade} />
       </div>
       {cart.length > 0 && ( 
         <div className="order-summary">
