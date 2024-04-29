@@ -136,7 +136,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
                   required
                 />
 
-                <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
+                <label className="input-label required-field">Address Line 1 <span className="required-asterisk">*</span></label>
                 <input
                   type="text"
                   name="addressline1"
@@ -198,7 +198,7 @@ export const DeliveryAddress: React.FC<DeliveryAddressProps> = ({
                 required
               />
 
-              <label className="input-label required-field">Address line 1 <span className="required-asterisk">*</span></label>
+              <label className="input-label required-field">Address Line 1 <span className="required-asterisk">*</span></label>
               <input
                 type="text"
                 name="addressline1"
