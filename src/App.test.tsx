@@ -460,8 +460,7 @@ describe('QuantitySelector', () => {
 
 
 describe('Checkout component', () => {
-  
-  it('validates form fields correctly (Name)', async () => {
+  it('validates form fields correctly (Delivery)', async () => {
    
     const mockProps = {
       cart: [],
@@ -507,6 +506,54 @@ describe('Checkout component', () => {
     fireEvent.click(submitButton);
 
     
+    expect(screen.getByText('Please fill out your delivery address.')).toBeInTheDocument();
+  });
+  it('validates form fields correctly (Name)', async () => {
+   
+    const mockProps = {
+      cart: [],
+      totalItems: 0,
+      userInfo: {
+        name: '',
+        phone: '',
+        email: '',
+        companyName: '',
+        vatNumber: '',
+      },
+      setUserInfo: vi.fn(),
+      deliveryAddress: {
+        addressline1: 'home 123',
+        addressline2: '',
+        city: 'city',
+        postalCode: '2300',
+        country: '',
+      },
+      setDeliveryAddress: vi.fn(),
+      billingAddress: {
+        addressline1: 'home 123',
+        addressline2: '',
+        city: 'city',
+        postalCode: '2300',
+        country: '',
+      },
+      setBillingAddress: vi.fn(),
+    };
+
+    
+    
+    render(
+      <MemoryRouter>
+    <Checkout {...mockProps} />
+    </MemoryRouter>);
+    
+
+    
+    const submitButton = screen.getByText('Submit Order');
+
+   
+    fireEvent.click(submitButton);
+
+    
     expect(screen.getByText('Please fill out your name.')).toBeInTheDocument();
   });
   it('validates form fields correctly (Phone number)', async () => {
@@ -523,18 +570,18 @@ describe('Checkout component', () => {
       },
       setUserInfo: vi.fn(),
       deliveryAddress: {
-        addressline1: '',
+        addressline1: 'home 123',
         addressline2: '',
-        city: '',
-        postalCode: '',
+        city: 'city',
+        postalCode: '2300',
         country: '',
       },
       setDeliveryAddress: vi.fn(),
       billingAddress: {
-        addressline1: '',
+        addressline1: 'home 123',
         addressline2: '',
-        city: '',
-        postalCode: '',
+        city: 'city',
+        postalCode: '2300',
         country: '',
       },
       setBillingAddress: vi.fn(),
@@ -570,18 +617,18 @@ describe('Checkout component', () => {
       },
       setUserInfo: vi.fn(),
       deliveryAddress: {
-        addressline1: '',
+        addressline1: 'home 123',
         addressline2: '',
-        city: '',
-        postalCode: '',
+        city: 'city',
+        postalCode: '2300',
         country: '',
       },
       setDeliveryAddress: vi.fn(),
       billingAddress: {
-        addressline1: '',
+        addressline1: 'home 123',
         addressline2: '',
-        city: '',
-        postalCode: '',
+        city: 'city',
+        postalCode: '2300',
         country: '',
       },
       setBillingAddress: vi.fn(),
@@ -602,53 +649,6 @@ describe('Checkout component', () => {
 
     
     expect(screen.getByText('Please enter your e-mail address.')).toBeInTheDocument();
-  });
-  it('validates form fields correctly (Delivery address)', async () => {
-    
-    const mockProps = {
-      cart: [],
-      totalItems: 0,
-      userInfo: {
-        name: 'name',
-        phone: '12344678',
-        email: 'email@test.test',
-        companyName: '',
-        vatNumber: '',
-      },
-      setUserInfo: vi.fn(),
-      deliveryAddress: {
-        addressline1: '',
-        addressline2: '',
-        city: '',
-        postalCode: '',
-        country: '',
-      },
-      setDeliveryAddress: vi.fn(),
-      billingAddress: {
-        addressline1: '',
-        addressline2: '',
-        city: '',
-        postalCode: '',
-        country: '',
-      },
-      setBillingAddress: vi.fn(),
-    };
-
-    
-    render(
-      <MemoryRouter>
-    <Checkout {...mockProps} />
-    </MemoryRouter>
-    );
-
-    
-    const submitButton = screen.getByText('Submit Order');
-
-    
-    fireEvent.click(submitButton);
-
-    
-    expect(screen.getByText('Please fill out your delivery address.')).toBeInTheDocument();
   });
   it('validates form fields correctly (City)', async () => {
     
@@ -887,7 +887,7 @@ describe('Checkout component', () => {
     fireEvent.click(screen.getByText('Submit Order'));
 
     
-
+    await new Promise(resolve => setTimeout(resolve, 4000));
     
     expect(await screen.findByText('Your order has been submitted successfully.')).toBeInTheDocument();
   });
