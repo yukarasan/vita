@@ -25,11 +25,7 @@ const Checkout: React.FC<CheckoutProps> = ({
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const validateFields = () => {
-    if (!userInfo.name) return { valid: false, message: "Please fill out your name." };
-    if (!userInfo.phone) return { valid: false, message: "Please enter your phone number." };
-    if (!userInfo.email) return { valid: false, message: "Please enter your e-mail address." };
-  
+  const validateFields = () => {  
     if (!deliveryAddress.addressline1) return { valid: false, message: 'Please fill out your delivery address.' };
     if (!deliveryAddress.city) return { valid: false, message: 'Please fill out your city.' };
     if (!deliveryAddress.postalCode) return { valid: false, message: 'Please fill out your postal code.' };
@@ -37,6 +33,10 @@ const Checkout: React.FC<CheckoutProps> = ({
     if (!billingAddress.addressline1) return { valid: false, message: 'Please fill out your billing address.' };
     if (!billingAddress.city) return { valid: false, message: 'Please fill out your billing city.' };
     if (!billingAddress.postalCode) return { valid: false, message: 'Please fill out your billing postal code.' };
+
+    if (!userInfo.name) return { valid: false, message: "Please fill out your name." };
+    if (!userInfo.phone) return { valid: false, message: "Please enter your phone number." };
+    if (!userInfo.email) return { valid: false, message: "Please enter your e-mail address." };
   
     if (!termsAccepted) return { valid: false, message: 'You must accept the terms and conditions to proceed.' };
   
@@ -65,12 +65,15 @@ const Checkout: React.FC<CheckoutProps> = ({
           cart, userInfo, deliveryAddress, billingAddress, termsAccepted, receiveMarketing, orderComment,
         }),
       });
-      setOrderSubmitted(true);
+      setTimeout(() => {
+        setOrderSubmitted(true);
+        setLoading(false);
+      }, 2000); 
     } catch (error) {
       console.error('Error submitting order:', error);
       setError('An error occurred while submitting the order.');
+      setLoading(false);
     }
-    setLoading(false);
   };  
 
   if (orderSubmitted) {
